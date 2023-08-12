@@ -2,7 +2,6 @@ package com.pethospital.domain.board;
 
 import com.pethospital.domain.Pet_member;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,7 +28,6 @@ public class Pet_board_like {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "likeid")
 	private int likeId;
 	
 	@ManyToOne // 다대원 방식
