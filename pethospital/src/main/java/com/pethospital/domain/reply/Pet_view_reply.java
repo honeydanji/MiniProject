@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.annotation.concurrent.Immutable;
 
-import org.hibernate.annotations.Subselect;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityResult;
@@ -20,7 +18,6 @@ import lombok.ToString;
 
 @Entity
 @Immutable // 이 엔티티는 읽기 전용입니다 (뷰)
-@Subselect("SELECT * FROM Combined_Reply") // 뷰 이름을 맞게 수정
 @Getter
 @Setter
 @AllArgsConstructor
