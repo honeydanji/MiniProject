@@ -49,10 +49,10 @@ public class Pet_free_board_controller{
 		return petFreeBoardService.allSelectFreeBoard();
 	}
 	
-	// 특정 게시글 조회(제목검색)
+	// 특정 게시글 조회(번호검색)
 	@GetMapping("/free/{title}")
-	public Pet_free_board readFree(@PathVariable String title){
-		return petFreeBoardService.selectFreeBoard(title);
+	public Pet_free_board readFree(@PathVariable int boardId){
+		return petFreeBoardService.selectFreeBoard(boardId);
 	}
 		
 	// 게시글 수정

@@ -13,7 +13,7 @@ public interface Pet_free_board_Repository extends JpaRepository<Pet_free_board,
 	// -> findAll
 
 	// 특정 게시글 조회
-	Pet_free_board findByTitle(String title);
+	//Pet_free_board findByTitle(String title);
 	
 	// 게시글 수정
 	// -> save
@@ -21,7 +21,7 @@ public interface Pet_free_board_Repository extends JpaRepository<Pet_free_board,
 	// 게시글 삭제
 	void deleteByFreeBoardId(int freeBoardId);
 	
-	// 게시글 번호로 게시글 찾기(수정, 삭제, 좋아요)
+	// 게시글 번호로 게시글 찾기(조회, 수정, 삭제, 좋아요)
 	Pet_free_board findByFreeBoardId(int freeBoardId);
 	
 }

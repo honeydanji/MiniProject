@@ -79,19 +79,19 @@ public class Pet_free_board_Service {
 	}
 	
 	// 특정 게시글 조회(제목검색)
-	public Pet_free_board selectFreeBoard(String title) {
+	public Pet_free_board selectFreeBoard(int boardId) {
 		
 		// 1. 게시글이 있는 지 판단한다.
-		if(petFreeBoardRepository.findByTitle(title) != null) {			
+		if(petFreeBoardRepository.findByFreeBoardId(boardId) != null) {			
 			// 1-1 제목 게시글 불러오고
-			Pet_free_board likeFreeBoard = petFreeBoardRepository.findByTitle(title);
+			Pet_free_board likeFreeBoard = petFreeBoardRepository.findByFreeBoardId(boardId);
 			// 1-2 게시글 조회수 수정(증가)
 			likeFreeBoard.setViews(likeFreeBoard.getViews() + 1); 		
 			// 1-3 조회수 증가후 다시 저장
 			petFreeBoardRepository.save(likeFreeBoard);
 			
 			// 2. 게시글 반환
-			return petFreeBoardRepository.findByTitle(title);
+			return petFreeBoardRepository.findByFreeBoardId(boardId);
 		}else {
 			return null;
 		}

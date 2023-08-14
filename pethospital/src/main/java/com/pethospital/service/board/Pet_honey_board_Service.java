@@ -82,19 +82,19 @@ public class Pet_honey_board_Service {
 	}
 		
 	// 특정 게시글 조회(제목검색)
-	public Pet_honey_board selectHoneyBoard(String title) {
+	public Pet_honey_board selectHoneyBoard(int boardId) {
 		
 		// 1. 게시글이 있는 지 판단한다.
-		if(petHoneyBoardRepository.findByTitle(title) != null) {			
-			// 1-1 제목 게시글 불러오고
-			Pet_honey_board likeHoneyBoard = petHoneyBoardRepository.findByTitle(title);
+		if(petHoneyBoardRepository.findByHoneyBoardId(boardId) != null) {			
+			// 1-1 번호로 게시글 불러오고
+			Pet_honey_board likeHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(boardId);
 			// 1-2 게시글 조회수 수정(증가)
 			likeHoneyBoard.setViews(likeHoneyBoard.getViews() + 1); 		
 			// 1-3 조회수 증가후 다시 저장
 			petHoneyBoardRepository.save(likeHoneyBoard);
 			
 			// 2. 게시글 반환
-			return petHoneyBoardRepository.findByTitle(title);
+			return petHoneyBoardRepository.findByHoneyBoardId(boardId);
 		}else {
 			return null;
 		}

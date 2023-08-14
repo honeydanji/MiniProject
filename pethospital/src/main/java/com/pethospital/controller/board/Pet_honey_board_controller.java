@@ -48,10 +48,10 @@ public class Pet_honey_board_controller{
 		return petHoneyBoardService.allSelectHoneyBoard();
 	}
 	
-	// 특정 게시글 가져오기(제목검색)
-	@GetMapping("/honey/{title}")
-	public Pet_honey_board readBoard(@PathVariable String title){
-		return petHoneyBoardService.selectHoneyBoard(title);
+	// 특정 게시글 가져오기(게시글 번호)
+	@GetMapping("/honey/{boardId}")
+	public Pet_honey_board readBoard(@PathVariable int boardId){
+		return petHoneyBoardService.selectHoneyBoard(boardId);
 	}
 	
 	// 게시글 수정하기
