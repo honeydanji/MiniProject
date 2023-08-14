@@ -7,5 +7,5 @@
 ## 클라이언트 및 서버 연동 오류 (2023/07/27)
 >> https://www.notion.so/8bfae60e8e7d4fa3aa698b9eb171a262?pvs=4
 
-## Configuration 및 Origincloss (2023/07/28)
+## Configuration 및 CORS 원리 (2023/07/28)
 >> https://www.notion.so/Configuration-Origincloss-41d9fca058a64310b90fa506a00a5ebc?pvs=4
