@@ -12,3 +12,6 @@
 
 ## 명령어 : “git stash”  (2023/07/28)
 >> https://www.notion.so/git-stash-9219d9c663904a64a73cd93d13cfbcf7?pvs=4
+
+## jdk와 jre 차이 (2023/07/30)
+>> https://www.notion.so/jdk-jre-292ce24fe2de43c385fe64b81661e1bb?pvs=4
