@@ -30,7 +30,7 @@ public class Pet_board_like_Service {
 	Pet_honey_board_Repository petHoneyBoardRepository; // 꿀팁게시판
 
 	@Transactional
-	public ResponseEntity<String> boardLikeOnOff(String userId, String boardName, int boardId){
+	public Object boardLikeOnOff(String userId, String boardName, int boardId){
 		
 		Pet_member petMember = petMemberRepository.findByUserId(userId);
 		
@@ -42,7 +42,8 @@ public class Pet_board_like_Service {
 				// 자유(자랑) 게시판 좋아요 - 1
 				petFreeBoard.setLikes(petFreeBoard.getLikes() - 1);
 				petFreeBoardRepository.save(petFreeBoard);
-				return ResponseEntity.ok("FreeOff"); // 좋아요가 있으면 끈다.
+				return petFreeBoardRepository.findByFreeBoardId(boardId).getLikes();
+				//return ResponseEntity.ok("FreeOff"); // 좋아요가 있으면 끈다.
 			}else{
 				// 좋아요가 없으면 On(레이블 생성)
 				Pet_board_like petBoardLike = Pet_board_like.builder()
@@ -54,7 +55,8 @@ public class Pet_board_like_Service {
 				// 자유(자랑) 게시판 좋아요 + 1
 				petFreeBoard.setLikes(petFreeBoard.getLikes() + 1);
 				petFreeBoardRepository.save(petFreeBoard);
-				return ResponseEntity.ok("FreeOn"); // 좋아요가 없으면 +1
+				return petFreeBoardRepository.findByFreeBoardId(boardId).getLikes();
+				//return ResponseEntity.ok("FreeOn"); // 좋아요가 없으면 +1
 			}
 		}else if(boardName.equals("honey")) {
 			Pet_honey_board petHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(boardId);
@@ -65,8 +67,8 @@ public class Pet_board_like_Service {
 				// 꿀팁 게시판 좋아요 - 1
 				petHoneyBoard.setLikes(petHoneyBoard.getLikes() - 1);
 				petHoneyBoardRepository.save(petHoneyBoard);
-				
-				return ResponseEntity.ok("HoneyOff");
+				return petHoneyBoardRepository.findByHoneyBoardId(boardId).getLikes();
+				//return ResponseEntity.ok("HoneyOff");
 			}else {
 				// 좋아요가 없으면 On(레이블 생성성)
 				Pet_board_like petBoardLike = Pet_board_like.builder()
@@ -79,8 +81,8 @@ public class Pet_board_like_Service {
 				// 꿀팁 게시판 좋아요 + 1
 				petHoneyBoard.setLikes(petHoneyBoard.getLikes() + 1); 
 				petHoneyBoardRepository.save(petHoneyBoard);
-				
-				return ResponseEntity.ok("HoneyOn");
+				return petHoneyBoardRepository.findByHoneyBoardId(boardId).getLikes();
+				//return ResponseEntity.ok("HoneyOn");
 			}
 		}
 		return null;

@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pethospital.service.board.Pet_board_like_Service;
@@ -17,8 +17,8 @@ public class Pet_board_like_controller {
 	Pet_board_like_Service petBoardLikeService;
 	
 	@Transactional
-	@PostMapping("/like/{boardName}/{boardId}")
-	public ResponseEntity<String> boardLike(
+	@GetMapping("/like/{boardName}/{boardId}")
+	public Object boardLike(
 											@PathVariable String boardName, 
 											@PathVariable int boardId,
 											Authentication authentication) 
