@@ -21,3 +21,6 @@
 
 ## FOREING KEY 사용법 및 원리 (2023/07/31)
 >> https://www.notion.so/FOREING-KEY-00c6dc8130d74cb0941289fe4a6d666c?pvs=4
+
+## JWT + @Jsonignore (2023/08/01)
+>> https://www.notion.so/JWT-Jsonignore-57d614e403ce434eb52f88ac951b1a98?pvs=4
