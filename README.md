@@ -18,3 +18,6 @@
 
 ## JavaBean 명명규칙 (2023/07/30)
 >> https://www.notion.so/JavaBean-07648d4d96704c19afe86660fa3bf0e5?pvs=4
+
+## FOREING KEY 사용법 및 원리 (2023/07/31)
+>> https://www.notion.so/FOREING-KEY-00c6dc8130d74cb0941289fe4a6d666c?pvs=4
