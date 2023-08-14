@@ -15,3 +15,6 @@
 
 ## jdk와 jre 차이 (2023/07/30)
 >> https://www.notion.so/jdk-jre-292ce24fe2de43c385fe64b81661e1bb?pvs=4
+
+## JavaBean 명명규칙 (2023/07/30)
+>> https://www.notion.so/JavaBean-07648d4d96704c19afe86660fa3bf0e5?pvs=4
