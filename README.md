@@ -5,6 +5,10 @@
   <img src="https://github.com/honeydanji/MiniProject/assets/129818881/1cc552c7-7984-4b02-b1aa-48ee94171c39">
 </p>
 
+- IDE = VSCode
+- JAVA = jdk 17.0.3
+- StringBoot = 3.0.2
+
 ## 2. 주요 기능
 - 게시판 CRUD
 - 게시글 "좋아요" 기능 구현
