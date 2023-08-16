@@ -1,7 +1,21 @@
 # 전국 동물병원 검색 웹서비스
 
 ## 1. 프로젝트 구성도
+<p align="center">
+  <img src="https://github.com/honeydanji/MiniProject/assets/129818881/1cc552c7-7984-4b02-b1aa-48ee94171c39">
+</p>
 
+## 2. 주요 기능
+- 게시판 CRUD
+- 게시글 "좋아요" 기능 구현
+- 이미지 업로드 및 삭제
+- JWT 로그인
+- 동물병원 Modal 동적 검색 
+
+## 3. 화면 구성
+
+
+## 4. 개발 과정
 ## MiniProject (All Notion)
 >> https://www.notion.so/d22b745abe3a4f8daecef6357da12d8b
 
