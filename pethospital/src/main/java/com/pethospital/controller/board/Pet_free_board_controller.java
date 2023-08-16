@@ -29,7 +29,7 @@ public class Pet_free_board_controller{
 	// 자유 게시판 - 회원
 	// 게시글 등록 
 	@PostMapping("/free")
-	public ResponseEntity<String> createFree(@ModelAttribute  Pet_free_board petFreeBoard,
+	public ResponseEntity<String> createFree(@ModelAttribute Pet_free_board petFreeBoard,
 											 @RequestParam(name = "imageFile", required = false) MultipartFile imageFile,
 											 Authentication authentication){
 		

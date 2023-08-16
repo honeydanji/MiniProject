@@ -56,7 +56,7 @@ public class Pet_free_board_Service {
                 // 원본 파일 이름 가져오기
                 String originalFilename = imageFile.getOriginalFilename();
                 // 파일 저장 경로 설정 (필요에 따라 변경해주세요)
-                String savePath = "C:/03Workspaces_STS4_Project/pethospital(수정)/Image/Free/";
+                String savePath = "C:/MiniProject/pethospital/Image/Free/";
 
                 // 저장할 파일 객체 생성
                 File savedFile = new File(savePath + originalFilename);
@@ -64,7 +64,7 @@ public class Pet_free_board_Service {
                 // MultipartFile의 내용을 파일에 저장
                 imageFile.transferTo(savedFile);
 
-                return originalFilename; // 저장된 파일 이름 반환
+                return savePath + originalFilename; // 저장된 파일 이름 반환
             } catch (Exception e) {
                 e.printStackTrace();
                 // 예외 발생 시 null이나 다른 값을 반환하거나 처리하는 등의 방법 선택
