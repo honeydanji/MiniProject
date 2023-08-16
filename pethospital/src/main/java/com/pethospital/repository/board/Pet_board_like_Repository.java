@@ -1,5 +1,7 @@
 package com.pethospital.repository.board;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.pethospital.domain.Pet_member;
@@ -19,4 +21,9 @@ public interface Pet_board_like_Repository extends JpaRepository<Pet_board_like,
 
     // 좋아요가 없을 때
     // ~~~.save()
+
+    // 해당 계정이 "좋아요"누른 게시글 반환
+    List<Pet_board_like> findByPetMemberAndPetFreeBoardIsNotNull(Pet_member petMember);
+    List<Pet_board_like> findByPetMemberAndPetHoneyBoardIsNotNull(Pet_member petMember);
+
 }

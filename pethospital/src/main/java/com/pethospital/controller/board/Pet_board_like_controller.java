@@ -1,7 +1,6 @@
 package com.pethospital.controller.board;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +15,7 @@ public class Pet_board_like_controller {
 	@Autowired
 	Pet_board_like_Service petBoardLikeService;
 	
+	// "좋아요" 기능 구현
 	@Transactional
 	@GetMapping("/like/{boardName}/{boardId}")
 	public Object boardLike(
@@ -33,5 +33,18 @@ public class Pet_board_like_controller {
 		String userId = authentication.getName(); // 권한에서 userId 추출
 		
 		return petBoardLikeService.boardLikeOnOff(userId, boardName, boardId);
+	}
+
+	// 특정 계정이 "좋아요" 누른 게시글 
+	@Transactional
+	@GetMapping("/like/{boardName}")
+	public Object boardLikeAll(
+								@PathVariable String boardName,
+								Authentication authentication)
+	{
+		// 해당 유저가 누른 좋아요 게시글에 대한 모든 정보를 리턴
+		String userId = authentication.getName(); // 권한에서 userId 추출
+
+		return petBoardLikeService.likeAll(userId, boardName);
 	}
 }

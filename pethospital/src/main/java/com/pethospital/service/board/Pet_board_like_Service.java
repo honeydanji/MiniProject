@@ -1,7 +1,6 @@
 package com.pethospital.service.board;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +28,7 @@ public class Pet_board_like_Service {
 	@Autowired
 	Pet_honey_board_Repository petHoneyBoardRepository; // 꿀팁게시판
 
+	// "좋아요" 기능 구현
 	@Transactional
 	public Object boardLikeOnOff(String userId, String boardName, int boardId){
 		
@@ -42,6 +42,7 @@ public class Pet_board_like_Service {
 				// 자유(자랑) 게시판 좋아요 - 1
 				petFreeBoard.setLikes(petFreeBoard.getLikes() - 1);
 				petFreeBoardRepository.save(petFreeBoard);
+
 				return petFreeBoardRepository.findByFreeBoardId(boardId).getLikes();
 				//return ResponseEntity.ok("FreeOff"); // 좋아요가 있으면 끈다.
 			}else{
@@ -52,10 +53,14 @@ public class Pet_board_like_Service {
 											.petHoneyBoard(null)
 											.build();
 				petBoardLikeRepository.save(petBoardLike);
+				
 				// 자유(자랑) 게시판 좋아요 + 1
 				petFreeBoard.setLikes(petFreeBoard.getLikes() + 1);
 				petFreeBoardRepository.save(petFreeBoard);
-				return petFreeBoardRepository.findByFreeBoardId(boardId).getLikes();
+
+				System.out.println(boardId);
+
+				return petFreeBoardRepository.findByFreeBoardId(boardId).getLikes(); // + userId + findAll()
 				//return ResponseEntity.ok("FreeOn"); // 좋아요가 없으면 +1
 			}
 		}else if(boardName.equals("honey")) {
@@ -67,6 +72,7 @@ public class Pet_board_like_Service {
 				// 꿀팁 게시판 좋아요 - 1
 				petHoneyBoard.setLikes(petHoneyBoard.getLikes() - 1);
 				petHoneyBoardRepository.save(petHoneyBoard);
+
 				return petHoneyBoardRepository.findByHoneyBoardId(boardId).getLikes();
 				//return ResponseEntity.ok("HoneyOff");
 			}else {
@@ -81,9 +87,25 @@ public class Pet_board_like_Service {
 				// 꿀팁 게시판 좋아요 + 1
 				petHoneyBoard.setLikes(petHoneyBoard.getLikes() + 1); 
 				petHoneyBoardRepository.save(petHoneyBoard);
+
 				return petHoneyBoardRepository.findByHoneyBoardId(boardId).getLikes();
 				//return ResponseEntity.ok("HoneyOn");
 			}
+		}
+		return null;
+	}
+
+
+	// 특정 계정이 "좋아요" 누른 게시글 
+	@Transactional
+	public Object likeAll(String userId, String boardName){
+
+		Pet_member petMember = petMemberRepository.findByUserId(userId);
+
+		if((boardName.equals("free"))) {
+			return petBoardLikeRepository.findByPetMemberAndPetFreeBoardIsNotNull(petMember);
+		}else if((boardName.equals("honey"))) {
+			return petBoardLikeRepository.findByPetMemberAndPetHoneyBoardIsNotNull(petMember);
 		}
 		return null;
 	}
