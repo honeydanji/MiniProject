@@ -46,3 +46,15 @@
 
 ### JWT + @Jsonignore (2023/08/01)
 >> https://www.notion.so/JWT-Jsonignore-57d614e403ce434eb52f88ac951b1a98?pvs=4
+
+### 개발마인드맵 작성 (2023/08/03)
+
+### 포스트맨 header JWT 토큰 설정 (2023/08/04)
+
+### JPA 다대다 및 다대원 방식 (2023/08/04)
+
+### RequestParam과 ReqeustBody 차이는? (2023/08/05)
+
+### @Transactional은 무엇인가? (2023/08/06)
+
+### ...
