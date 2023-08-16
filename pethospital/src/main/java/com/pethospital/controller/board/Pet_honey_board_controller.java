@@ -1,8 +1,14 @@
 package com.pethospital.controller.board;
 
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -72,5 +78,29 @@ public class Pet_honey_board_controller{
 		
 		return petHoneyBoardService.deleteHoneyBoard(honeyBoardId, userId);
 	}
+
+	// 이미지 파일이 저장된 디렉토리 경로를 설정.
+	private final String imageDirectory = "C:/MiniProject/pethospital/Image/Honey";
+
+	// 이미지 조회
+	@GetMapping("/honey/images/{imageName:.+}")
+	public ResponseEntity<Resource> getImage(@PathVariable String imageName) throws MalformedURLException {
+
+        // 요청된 이미지 파일 이름을 사용하여 이미지 파일의 경로를 가져오기.
+        Path imagePath = Paths.get(imageDirectory).resolve(imageName);
+        Resource imageResource = new UrlResource(imagePath.toUri());
+
+
+        // 이미지 파일이 존재하지 않는 경우.
+        if (!imageResource.exists()) {
+            // 이미지가 없을 경우에 대한 처리를 여기에 작성.
+            return ResponseEntity.notFound().build();
+        }
+
+        // 이미지 파일을 응답으로 반환합니다.
+        return ResponseEntity.ok()
+                .contentType(MediaType.IMAGE_JPEG)
+                .body(imageResource);
+    }
 		
 }

@@ -39,7 +39,6 @@ public class Pet_free_board {
     @Column(nullable = false)
     private String content; 	// 게시글 내용
     
-    
     // 선택
     private String imagefile; 	// 이미지파일 (여러개)
     

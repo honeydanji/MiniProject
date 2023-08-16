@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.pethospital.domain.Pet_member;
 import com.pethospital.domain.board.Pet_free_board;
+import com.pethospital.dto.FreeBoardDTO;
 import com.pethospital.repository.Pet_member_Repository;
 import com.pethospital.repository.board.Pet_free_board_Repository;
 
@@ -19,6 +21,9 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class Pet_free_board_Service {
+
+	// 이미지 파일의 기본 URL
+	private final String imageBaseURL = "http:/localhost:8080/free/images/"; 
 
 	@Autowired
 	Pet_free_board_Repository petFreeBoardRepository;
@@ -41,7 +46,7 @@ public class Pet_free_board_Service {
 		if (imageFile != null && !imageFile.isEmpty()) {
 		    try {
 		        String imageFileName = saveImage(imageFile);
-		        petFreeBoard.setImagefile(imageFileName); // 이미지 파일 이름 설정
+		        petFreeBoard.setImagefile(imageBaseURL + imageFileName); // 이미지 파일 이름 설정
 		    } catch (IOException e) {
 		        e.printStackTrace();
 		    }
@@ -64,7 +69,8 @@ public class Pet_free_board_Service {
                 // MultipartFile의 내용을 파일에 저장
                 imageFile.transferTo(savedFile);
 
-                return savePath + originalFilename; // 저장된 파일 이름 반환
+				return originalFilename;
+                //return savePath + originalFilename; // 저장된 파일 이름 반환
             } catch (Exception e) {
                 e.printStackTrace();
                 // 예외 발생 시 null이나 다른 값을 반환하거나 처리하는 등의 방법 선택
@@ -74,9 +80,34 @@ public class Pet_free_board_Service {
     }
  	
 	// 전체 게시글 조회
-	public List<Pet_free_board> allSelectFreeBoard() {
-		return petFreeBoardRepository.findAll();
+	public List<FreeBoardDTO> allSelectFreeBoard() {
+		// 모든 게시글 데이터를 데이터베이스에서 가져옴
+		List<Pet_free_board> freeBoards = petFreeBoardRepository.findAll();
+
+		 // 게시글 목록을 각각의 FreeBoardDTO로 변환하고 이미지 URL을 포함시킨 DTO 리스트로 변환
+        return freeBoards.stream()
+            .map(this::createFreeBoardDTOWithImageUrl)
+            .collect(Collectors.toList());
 	}
+
+	// 이미지 URL을 포함한 FreeBoardDTO 생성 메서드
+	private FreeBoardDTO createFreeBoardDTOWithImageUrl(Pet_free_board freeBoard) {
+    	FreeBoardDTO dto = new FreeBoardDTO(); // FreeBoardDTO 객체 생성
+        dto.setFreeBoardId(freeBoard.getFreeBoardId()); // 게시글 ID 설정
+        dto.setUserId(freeBoard.getUserId());
+		dto.setNickname(freeBoard.getNickname());
+		dto.setTitle(freeBoard.getTitle()); // 게시글 제목 설정
+        dto.setContent(freeBoard.getContent()); // 게시글 내용 설정
+        dto.setImageFile(imageBaseURL + freeBoard.getImagefile()); // 이미지 URL 생성 및 설정
+		dto.setRegdate(freeBoard.getRegdate());
+		dto.setUpdatedate(freeBoard.getUpdatedate());
+		dto.setDeletedate(freeBoard.getDeletedate());
+		dto.setViews(freeBoard.getViews());
+		dto.setLikes(freeBoard.getLikes());
+
+        return dto; // 이미지 URL이 포함된 DTO 반환
+    }
+
 	
 	// 특정 게시글 조회(제목검색)
 	public Pet_free_board selectFreeBoard(int boardId) {
@@ -118,7 +149,7 @@ public class Pet_free_board_Service {
 				if (imageFile != null && !imageFile.isEmpty()) {
 				    try {
 				        String imageFileName = saveImage(imageFile);
-				        modifyFreeBoard.setImagefile(imageFileName); // 이미지 파일 이름 설정
+				        modifyFreeBoard.setImagefile(imageBaseURL + imageFileName); // 이미지 파일 이름 설정
 				    } catch (IOException e) {
 				        e.printStackTrace();
 				    }

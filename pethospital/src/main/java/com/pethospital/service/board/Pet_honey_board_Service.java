@@ -20,6 +20,9 @@ import jakarta.transaction.Transactional;
 @Service
 public class Pet_honey_board_Service {
 
+	// 이미지 파일의 기본 URL
+	private final String imageBaseURL = "http:/localhost:8080/honey/images/"; 
+
 	@Autowired
 	Pet_honey_board_Repository petHoneyBoardRepository;
 	
@@ -43,7 +46,7 @@ public class Pet_honey_board_Service {
 		if (imageFile != null && !imageFile.isEmpty()) {
 		    try {
 		        String imageFileName = saveImage(imageFile);
-		        petHoneyBoard.setImagefile(imageFileName); // 이미지 파일 이름 설정
+		        petHoneyBoard.setImagefile(imageBaseURL + imageFileName); // 이미지 파일 이름 설정
 		    } catch (IOException e) {
 		        e.printStackTrace();
 		    }
@@ -67,7 +70,7 @@ public class Pet_honey_board_Service {
                 // MultipartFile의 내용을 파일에 저장
                 imageFile.transferTo(savedFile);
 
-                return savePath + originalFilename; // 저장된 파일 이름 반환
+                return originalFilename; // 저장된 파일 이름 반환
             } catch (Exception e) {
                 e.printStackTrace();
                 // 예외 발생 시 null이나 다른 값을 반환하거나 처리하는 등의 방법 선택
@@ -120,7 +123,7 @@ public class Pet_honey_board_Service {
 				if (imageFile != null && !imageFile.isEmpty()) {
 				    try {
 				        String imageFileName = saveImage(imageFile);
-				        modifyHoneyBoard.setImagefile(imageFileName); // 이미지 파일 이름 설정
+				        modifyHoneyBoard.setImagefile(imageBaseURL + imageFileName); // 이미지 파일 이름 설정
 				    } catch (IOException e) {
 				        e.printStackTrace();
 				    }
