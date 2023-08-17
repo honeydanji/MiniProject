@@ -8,6 +8,7 @@
 - IDE = VSCode
 - JAVA = jdk 17.0.3
 - StringBoot = 3.0.2
+- Front : https://github.com/suho0815/bigdata_web_project01.git
 
 ## 2. 주요 기능
 - 게시판 CRUD
