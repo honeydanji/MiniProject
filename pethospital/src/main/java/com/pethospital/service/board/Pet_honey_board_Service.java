@@ -21,7 +21,8 @@ import jakarta.transaction.Transactional;
 public class Pet_honey_board_Service {
 
 	// 이미지 파일의 기본 URL
-	private final String imageBaseURL = "http:/localhost:8080/honey/images/"; 
+	private final String imageBaseURL = "http://10.125.121.183:8080/honey/images/";
+	//private final String imageBaseURL = "http:/localhost:8080/honey/images/";   // 로컬
 
 	@Autowired
 	Pet_honey_board_Repository petHoneyBoardRepository;

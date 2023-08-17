@@ -23,7 +23,8 @@ import jakarta.transaction.Transactional;
 public class Pet_free_board_Service {
 
 	// 이미지 파일의 기본 URL
-	private final String imageBaseURL = "http:/localhost:8080/free/images/"; 
+	private final String imageBaseURL = "http://10.125.121.183:8080/free/images/";
+	//private final String imageBaseURL = "http:/localhost:8080/honey/images/";   // 로컬
 
 	@Autowired
 	Pet_free_board_Repository petFreeBoardRepository;
@@ -98,7 +99,7 @@ public class Pet_free_board_Service {
 		dto.setNickname(freeBoard.getNickname());
 		dto.setTitle(freeBoard.getTitle()); // 게시글 제목 설정
         dto.setContent(freeBoard.getContent()); // 게시글 내용 설정
-        dto.setImageFile(imageBaseURL + freeBoard.getImagefile()); // 이미지 URL 생성 및 설정
+        dto.setImageFile(freeBoard.getImagefile()); // 이미지 URL 생성 및 설정
 		dto.setRegdate(freeBoard.getRegdate());
 		dto.setUpdatedate(freeBoard.getUpdatedate());
 		dto.setDeletedate(freeBoard.getDeletedate());
