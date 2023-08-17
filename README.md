@@ -17,7 +17,9 @@
 - 동물병원 Modal 동적 검색 
 
 ## 3. 화면 구성
-
+<p align="center">
+  <img src="https://github.com/honeydanji/MiniProject/assets/129818881/29eb992b-a11b-4500-b1b9-9091a334b1b2">
+</p>
 
 ## 4. 개발 과정
 ## MiniProject (All Notion)
