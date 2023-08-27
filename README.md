@@ -50,17 +50,14 @@
 ### JWT + @Jsonignore (2023/08/01)
 >> https://www.notion.so/JWT-Jsonignore-57d614e403ce434eb52f88ac951b1a98?pvs=4
 
-### 개발마인드맵 작성 (2023/08/03)
-
-### 포스트맨 header JWT 토큰 설정 (2023/08/04)
-
 ### JPA 다대다 및 다대원 방식 (2023/08/04)
+>> https://www.notion.so/JPA-5edb4cf29e634c83a8d0460535b5012f?pvs=4
 
 ### RequestParam과 ReqeustBody 차이는? (2023/08/05)
+>> https://www.notion.so/RequestParam-ReqeustBody-c24647b2fa8a4679950f85894e49a4e2?pvs=4
 
 ### @Transactional은 무엇인가? (2023/08/06)
-
-### ...
+>> https://www.notion.so/Transactional-3d65808dd7a94aff842ecfc1575ce09a?pvs=4
 
 ## 5. 후기
 - 원본데이터에 있는 위도, 경도가 정상값인지 확인하지 않아서 카카오지도 API를 사용하지 못했다...
