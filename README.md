@@ -16,7 +16,7 @@
 - 이미지 업로드 및 삭제
 - JWT 로그인
 - 동물병원 Modal 동적 검색
-<img src="https://github.com/honeydanji/MiniProject/assets/129818881/cadae2ad-cf8d-4bc9-a678-d925d6ab9f58"> 
+<img src="https://github.com/honeydanji/MiniProject/assets/129818881/bc5bfac3-ceb1-4b95-820e-0db5e56e7e0e"> 
 
 ## 3. 화면 구성
 <p align="center">
