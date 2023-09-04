@@ -15,7 +15,8 @@
 - 게시글 "좋아요" 기능 구현
 - 이미지 업로드 및 삭제
 - JWT 로그인
-- 동물병원 Modal 동적 검색 
+- 동물병원 Modal 동적 검색
+<img src="https://github.com/honeydanji/MiniProject/assets/129818881/cadae2ad-cf8d-4bc9-a678-d925d6ab9f58"> 
 
 ## 3. 화면 구성
 <p align="center">
