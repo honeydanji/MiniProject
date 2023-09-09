@@ -11,10 +11,14 @@
 - Front : https://github.com/suho0815/bigdata_web_project01/tree/ho
 
 ## 2. 주요 기능
-- 게시판 CRUD
-- 게시글 "좋아요" 기능 구현
-- 이미지 업로드 및 삭제
 - JWT 로그인
+- 게시판 CRUD(꿀팁게시판, 자랑게시판)
+- 권한에 따른 게시판 접근
+  - 꿀팁 : Member
+  - 자랑 : All
+- 게시글 "좋아요" 기능 구현(on/off)
+- 좋아요 수, 댓글 수 상위 TOP5 메인 홈페이지 게시
+- 이미지 업로드 및 삭제
 - 동물병원 Modal 동적 검색
 <img src="https://github.com/honeydanji/MiniProject/assets/129818881/bc5bfac3-ceb1-4b95-820e-0db5e56e7e0e"> 
 
