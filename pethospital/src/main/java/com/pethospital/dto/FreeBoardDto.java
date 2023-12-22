@@ -2,7 +2,7 @@ package com.pethospital.dto;
 
 import java.util.Date;
 
-public class FreeBoardDTO {
+public class FreeBoardDto {
     private int freeBoardId;
     private String userId;
     private String nickname;

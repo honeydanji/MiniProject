@@ -11,33 +11,33 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pethospital.domain.Pet_member;
-import com.pethospital.domain.board.Pet_free_board;
-import com.pethospital.dto.FreeBoardDTO;
-import com.pethospital.repository.Pet_member_Repository;
-import com.pethospital.repository.board.Pet_free_board_Repository;
+import com.pethospital.domain.PetMember;
+import com.pethospital.domain.board.PetFreeBoard;
+import com.pethospital.dto.FreeBoardDto;
+import com.pethospital.repository.PetMemberRepository;
+import com.pethospital.repository.board.PetFreeBoardRepository;
 
 import jakarta.transaction.Transactional;
 
 @Service
-public class Pet_free_board_Service {
+public class PetFreeBoardService {
 
 	// 이미지 파일의 기본 URL
 	private final String imageBaseURL = "http://10.125.121.183:8080/free/images/";
 	//private final String imageBaseURL = "http:/localhost:8080/honey/images/";   // 로컬
 
 	@Autowired
-	Pet_free_board_Repository petFreeBoardRepository;
+	PetFreeBoardRepository petFreeBoardRepository;
 
 	@Autowired
-	Pet_member_Repository petMemberRepository;
+	PetMemberRepository petMemberRepository;
 	
 	// 게시글 등록
-	public void createFreeService(Pet_free_board petFreeBoard, 
-								  MultipartFile imageFile,
-								  String userId) {
+	public void createFreeService(PetFreeBoard petFreeBoard,
+                                  MultipartFile imageFile,
+                                  String userId) {
 		// 게시글을 작성할 때 멤버정보(닉네임, 아이디)를 게시판 테이블에 저장한다.
-		Pet_member petMember = petMemberRepository.findByUserId(userId);
+		PetMember petMember = petMemberRepository.findByUserId(userId);
 		
 		// 로그인 유저 정보 게시글 ID, NickName 저장
 		petFreeBoard.setUserId(petMember.getUserId());
@@ -81,9 +81,9 @@ public class Pet_free_board_Service {
     }
  	
 	// 전체 게시글 조회
-	public List<FreeBoardDTO> allSelectFreeBoard() {
+	public List<FreeBoardDto> allSelectFreeBoard() {
 		// 모든 게시글 데이터를 데이터베이스에서 가져옴
-		List<Pet_free_board> freeBoards = petFreeBoardRepository.findAll();
+		List<PetFreeBoard> freeBoards = petFreeBoardRepository.findAll();
 
 		 // 게시글 목록을 각각의 FreeBoardDTO로 변환하고 이미지 URL을 포함시킨 DTO 리스트로 변환
         return freeBoards.stream()
@@ -92,8 +92,8 @@ public class Pet_free_board_Service {
 	}
 
 	// 이미지 URL을 포함한 FreeBoardDTO 생성 메서드
-	private FreeBoardDTO createFreeBoardDTOWithImageUrl(Pet_free_board freeBoard) {
-    	FreeBoardDTO dto = new FreeBoardDTO(); // FreeBoardDTO 객체 생성
+	private FreeBoardDto createFreeBoardDTOWithImageUrl(PetFreeBoard freeBoard) {
+    	FreeBoardDto dto = new FreeBoardDto(); // FreeBoardDTO 객체 생성
         dto.setFreeBoardId(freeBoard.getFreeBoardId()); // 게시글 ID 설정
         dto.setUserId(freeBoard.getUserId());
 		dto.setNickname(freeBoard.getNickname());
@@ -111,12 +111,12 @@ public class Pet_free_board_Service {
 
 	
 	// 특정 게시글 조회(제목검색)
-	public Pet_free_board selectFreeBoard(int boardId) {
+	public PetFreeBoard selectFreeBoard(int boardId) {
 		
 		// 1. 게시글이 있는 지 판단한다.
 		if(petFreeBoardRepository.findByFreeBoardId(boardId) != null) {			
 			// 1-1 제목 게시글 불러오고
-			Pet_free_board likeFreeBoard = petFreeBoardRepository.findByFreeBoardId(boardId);
+			PetFreeBoard likeFreeBoard = petFreeBoardRepository.findByFreeBoardId(boardId);
 			// 1-2 게시글 조회수 수정(증가)
 			likeFreeBoard.setViews(likeFreeBoard.getViews() + 1); 		
 			// 1-3 조회수 증가후 다시 저장
@@ -130,17 +130,17 @@ public class Pet_free_board_Service {
 	}
 	
 	// 게시글 수정
-	public Object updateFreeBoard(int freeBoardId, Pet_free_board post, MultipartFile imageFile,String userId) {
+	public Object updateFreeBoard(int freeBoardId, PetFreeBoard post, MultipartFile imageFile, String userId) {
 		//Pet_member petMember = petMemberRepository.findByUserId(userId);
 		
 		// 해당 번호 게시글 가져오기
-		Pet_free_board petFreeBoard = petFreeBoardRepository.findByFreeBoardId(freeBoardId); 
+		PetFreeBoard petFreeBoard = petFreeBoardRepository.findByFreeBoardId(freeBoardId);
 
 		// 본인 게시글이 맞는지 확인...
 		if(!petFreeBoard.getUserId().equals(userId)) {
 			return ResponseEntity.ok("본인 게시글이 아닙니다.");
 		}else {
-			Pet_free_board modifyFreeBoard = petFreeBoardRepository.findByFreeBoardId(freeBoardId); // 번호로 게시글 찾고
+			PetFreeBoard modifyFreeBoard = petFreeBoardRepository.findByFreeBoardId(freeBoardId); // 번호로 게시글 찾고
 			
 			if(modifyFreeBoard != null) {
 				modifyFreeBoard.setTitle(post.getTitle());
@@ -165,7 +165,7 @@ public class Pet_free_board_Service {
 	// 게시글 삭제
 	@Transactional
 	public ResponseEntity<String> deleteFreeBoard(int freeBoardId, String userId) {
-		Pet_member petMember = petMemberRepository.findByUserId(userId);
+		PetMember petMember = petMemberRepository.findByUserId(userId);
 
 		if(petMember == null) {
 			return ResponseEntity.ok("회원이 아닙니다.");

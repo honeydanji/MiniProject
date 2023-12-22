@@ -21,7 +21,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Builder
-public class Pet_free_board {
+public class PetFreeBoard {
     
 	// 필수
     @Id

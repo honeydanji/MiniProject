@@ -11,21 +11,21 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.pethospital.domain.Pet_member;
-import com.pethospital.repository.Pet_member_Repository;
+import com.pethospital.domain.PetMember;
+import com.pethospital.repository.PetMemberRepository;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 	
-	private Pet_member_Repository petMemberRepository;
+	private PetMemberRepository petMemberRepository;
 	
 	
 	// 토큰이 있는 상태에서 로그인할 때
-	public JWTAuthorizationFilter(AuthenticationManager authenticationManager, Pet_member_Repository petMemberRepository) {
+	public JwtAuthorizationFilter(AuthenticationManager authenticationManager, PetMemberRepository petMemberRepository) {
 		super(authenticationManager);
 		this.petMemberRepository = petMemberRepository;
 	}
@@ -57,7 +57,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 																		.asString();
 		
 		// 5. 추출한 "userId" 정보를 사용하여 사용자를 데이터베이스에서 조회.
-		Pet_member opt = petMemberRepository.findByUserId(userId);
+		PetMember opt = petMemberRepository.findByUserId(userId);
 		
 		// 6. 조회된 사용자가 없는 경우, 다음 필터로 전달한다.  >> Optional : 컨테이너가 비어있을 경우 때문에 사용.
 		if(opt == null) { // 존재하지 않는 아이디를 넣어서 디버깅을 해보자 >> 어떻게 넘어오냐? 

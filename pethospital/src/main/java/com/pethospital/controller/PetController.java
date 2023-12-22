@@ -8,16 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pethospital.service.Pet_hospital_Service;
+import com.pethospital.service.PetHospitalService;
 
 @RestController
-public class Pet_controller {
+public class PetController {
     
     @Autowired
-    private Pet_hospital_Service pet_hospital_sevice;
-    
-//    @Autowired
-//    private CrawlingData crawlingData;
+    private PetHospitalService pet_hospital_sevice;
 
     // '광역도시' 목록반환
     //@CrossOrigin(origins = "http://localhost:3000")
@@ -79,16 +76,4 @@ public class Pet_controller {
          response.put("pethospital", pet_hospital_sevice.getpethospitalByProvinceAndCityAndDetailCity(province, city, detailcity));// 도/시 + 시/구/군 + 동/읍/면 병원목록
          return response;
      }
-     
-//     // 동물병원 더보기 >> 네이버 지도 url 반환.
-//     @GetMapping("naver/{hospital}")
-//     public String naver(@PathVariable String hospital) {
-//    	 return "https://map.naver.com/v5/search/" + hospital;
-//     }
-     
-//     // 동물병원 네이버 지도 검색 
-//     @PostMapping("Crawling/{hospital}")
-//     public void CrawlingData(String hospital) {
-//    	 
-//     }
 }

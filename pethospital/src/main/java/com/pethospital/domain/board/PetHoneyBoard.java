@@ -19,7 +19,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Pet_honey_board {
+public class PetHoneyBoard {
     
 	// 필수
     @Id

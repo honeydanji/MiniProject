@@ -7,19 +7,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.pethospital.domain.Pet_member;
-import com.pethospital.repository.Pet_member_Repository;
+import com.pethospital.domain.PetMember;
+import com.pethospital.repository.PetMemberRepository;
 
 @Service
 public class SecurityUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private Pet_member_Repository petMemberRepository; // JPA상속받은 클래스를 통해 요청한 데이터를 DB에서 불러올 수 있다. 
+	private PetMemberRepository petMemberRepository; // JPA상속받은 클래스를 통해 요청한 데이터를 DB에서 불러올 수 있다.
 	
 	
 	@Override
 	public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
-		Pet_member petMember = petMemberRepository.findByUserId(userId);
+		PetMember petMember = petMemberRepository.findByUserId(userId);
 //				.orElseThrow(() -> 
 //				new UsernameNotFoundException("Not Found!"));
 		// username이 존재하지 않으면 "NOT Found" 를 리턴한다. (아이디가 없을 경우)

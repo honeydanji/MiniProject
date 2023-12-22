@@ -24,7 +24,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @Builder
-public class Pet_member {
+public class PetMember {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pethospital.dto.Pet_member_dto;
-import com.pethospital.service.Pet_member_Service;
+import com.pethospital.dto.PetMemberDto;
+import com.pethospital.service.PetMemberService;
 
 @RestController
-public class Pet_member_controller {
+public class PetMemberController {
 
     @Autowired
-    private Pet_member_Service pet_member_service;
+    private PetMemberService pet_member_service;
     
     // 회원가입
     @PostMapping("/register")
-    public ResponseEntity<String> registerMember(@RequestBody Pet_member_dto petMemberDto) {
+    public ResponseEntity<String> registerMember(@RequestBody PetMemberDto petMemberDto) {
         pet_member_service.registerPetMember(petMemberDto); // 프론트에서 보낸 member 정보를 서비스로 보낸다.
 //        return ResponseEntity.status(HttpStatus.OK).body("회원가입을 축하드립니다.");
         return ResponseEntity.ok("회원가입을 축하드립니다.");

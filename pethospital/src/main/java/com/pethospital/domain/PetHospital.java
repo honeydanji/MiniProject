@@ -18,7 +18,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @Entity
-public class Pet_hospital{
+public class PetHospital {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

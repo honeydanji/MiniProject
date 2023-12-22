@@ -2,7 +2,7 @@ package com.pethospital.domain.reply;
 
 import java.util.Date;
 
-import com.pethospital.domain.board.Pet_free_board;
+import com.pethospital.domain.board.PetFreeBoard;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,7 +34,7 @@ public class Pet_free_reply {
     
     @ManyToOne
     @JoinColumn(name="free_board_id", nullable = false)
-    private Pet_free_board freeBoardId;
+    private PetFreeBoard freeBoardId;
 
     @Column(name="user_id", unique = true)
     private String userId;

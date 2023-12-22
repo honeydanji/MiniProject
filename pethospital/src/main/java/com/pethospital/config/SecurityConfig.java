@@ -13,16 +13,16 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.pethospital.config.auth.JWTAuthorizationFilter;
-import com.pethospital.config.filter.JWTAuthenticationFilter;
-import com.pethospital.repository.Pet_member_Repository;
+import com.pethospital.config.auth.JwtAuthorizationFilter;
+import com.pethospital.config.filter.JwtAuthenticationFilter;
+import com.pethospital.repository.PetMemberRepository;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 	
 	@Autowired
-	private Pet_member_Repository petMemberRepository;
+	private PetMemberRepository petMemberRepository;
 	
 	@Autowired
 	private AuthenticationConfiguration authConfig;
@@ -75,8 +75,8 @@ public class SecurityConfig {
 		// http.addFilter(new JWTAuthenticationFilter()); 
 		
 		//// 필터 2
-		http.addFilter(new JWTAuthenticationFilter(authConfig.getAuthenticationManager())); // 1. 로그인 시도 > 토큰 생성 및 반환
-		http.addFilter(new JWTAuthorizationFilter(authConfig.getAuthenticationManager(), petMemberRepository)); // 2. 토큰으로 로그인 시도 확인 및 인증 및 권한 부여
+		http.addFilter(new JwtAuthenticationFilter(authConfig.getAuthenticationManager())); // 1. 로그인 시도 > 토큰 생성 및 반환
+		http.addFilter(new JwtAuthorizationFilter(authConfig.getAuthenticationManager(), petMemberRepository)); // 2. 토큰으로 로그인 시도 확인 및 인증 및 권한 부여
 		return http.build();
 	}
 }

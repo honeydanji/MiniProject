@@ -18,7 +18,7 @@ import com.pethospital.domain.reply.Pet_free_reply;
 import com.pethospital.service.reply.Pet_free_reply_service;
 
 @RestController
-public class Pet_free_reply_controller {
+public class PetFreeReplyController {
 
 	
 	@Autowired

@@ -2,9 +2,9 @@ package com.pethospital.repository.board;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.pethospital.domain.board.Pet_free_board;
+import com.pethospital.domain.board.PetFreeBoard;
 
-public interface Pet_free_board_Repository extends JpaRepository<Pet_free_board, Integer>{
+public interface PetFreeBoardRepository extends JpaRepository<PetFreeBoard, Integer>{
  
 	// 게시글등록 
 	// -> save
@@ -22,6 +22,6 @@ public interface Pet_free_board_Repository extends JpaRepository<Pet_free_board,
 	void deleteByFreeBoardId(int freeBoardId);
 	
 	// 게시글 번호로 게시글 찾기(조회, 수정, 삭제, 좋아요)
-	Pet_free_board findByFreeBoardId(int freeBoardId);
+	PetFreeBoard findByFreeBoardId(int freeBoardId);
 	
 }

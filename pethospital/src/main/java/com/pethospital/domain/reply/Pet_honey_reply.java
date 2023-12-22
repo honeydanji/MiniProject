@@ -2,7 +2,7 @@ package com.pethospital.domain.reply;
 
 import java.util.Date;
 
-import com.pethospital.domain.board.Pet_honey_board;
+import com.pethospital.domain.board.PetHoneyBoard;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,7 +32,7 @@ public class Pet_honey_reply {
     
     @ManyToOne
     @JoinColumn(name="honey_board_id", nullable = false)
-    private Pet_honey_board honeyBoardId;
+    private PetHoneyBoard honeyBoardId;
 
     @Column(name="user_id", unique = true)
     private String userId;

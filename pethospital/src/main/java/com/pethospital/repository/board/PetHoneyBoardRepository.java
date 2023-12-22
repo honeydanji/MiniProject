@@ -2,9 +2,9 @@ package com.pethospital.repository.board;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.pethospital.domain.board.Pet_honey_board;
+import com.pethospital.domain.board.PetHoneyBoard;
 
-public interface Pet_honey_board_Repository extends JpaRepository<Pet_honey_board, Integer>{
+public interface PetHoneyBoardRepository extends JpaRepository<PetHoneyBoard, Integer>{
     
 	// 게시글등록 
 	// -> save
@@ -22,6 +22,6 @@ public interface Pet_honey_board_Repository extends JpaRepository<Pet_honey_boar
 	void deleteByHoneyBoardId(int honeyBoardId);
 	
     // 게시글 번호로 게시글 찾기(찾기,수정, 삭제, 좋아요)
-    Pet_honey_board findByHoneyBoardId(int honeyBoardId); 
+    PetHoneyBoard findByHoneyBoardId(int honeyBoardId);
 
 }

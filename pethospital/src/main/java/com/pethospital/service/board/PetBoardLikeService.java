@@ -4,38 +4,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pethospital.domain.Pet_member;
-import com.pethospital.domain.board.Pet_board_like;
-import com.pethospital.domain.board.Pet_free_board;
-import com.pethospital.domain.board.Pet_honey_board;
-import com.pethospital.repository.Pet_member_Repository;
-import com.pethospital.repository.board.Pet_board_like_Repository;
-import com.pethospital.repository.board.Pet_free_board_Repository;
-import com.pethospital.repository.board.Pet_honey_board_Repository;
+import com.pethospital.domain.PetMember;
+import com.pethospital.domain.board.PetBoardLike;
+import com.pethospital.domain.board.PetFreeBoard;
+import com.pethospital.domain.board.PetHoneyBoard;
+import com.pethospital.repository.PetMemberRepository;
+import com.pethospital.repository.board.PetBoardLikeRepository;
+import com.pethospital.repository.board.PetFreeBoardRepository;
+import com.pethospital.repository.board.PetHoneyBoardRepository;
 
 @Service
-public class Pet_board_like_Service {
+public class PetBoardLikeService {
 
 	@Autowired
-	Pet_board_like_Repository petBoardLikeRepository; // 좋아요 테이블
+	PetBoardLikeRepository petBoardLikeRepository; // 좋아요 테이블
 	
 	@Autowired
-	Pet_member_Repository petMemberRepository; // 멤버
+	PetMemberRepository petMemberRepository; // 멤버
 
 	@Autowired
-	Pet_free_board_Repository petFreeBoardRepository; // 자유(자랑)게시판
+	PetFreeBoardRepository petFreeBoardRepository; // 자유(자랑)게시판
 	
 	@Autowired
-	Pet_honey_board_Repository petHoneyBoardRepository; // 꿀팁게시판
+	PetHoneyBoardRepository petHoneyBoardRepository; // 꿀팁게시판
 
 	// "좋아요" 기능 구현
 	@Transactional
 	public Object boardLikeOnOff(String userId, String boardName, int boardId){
 		
-		Pet_member petMember = petMemberRepository.findByUserId(userId);
+		PetMember petMember = petMemberRepository.findByUserId(userId);
 		
 		if (boardName.equals("free")) {
-			Pet_free_board petFreeBoard = petFreeBoardRepository.findByFreeBoardId(boardId);
+			PetFreeBoard petFreeBoard = petFreeBoardRepository.findByFreeBoardId(boardId);
 			if(petBoardLikeRepository.findByPetMemberAndPetFreeBoard(petMember, petFreeBoard) != null) {
 				// 좋아요가 있으면 Off(레이블 삭제)
 				petBoardLikeRepository.deleteByPetMemberAndPetFreeBoard(petMember, petFreeBoard);
@@ -47,7 +47,7 @@ public class Pet_board_like_Service {
 				//return ResponseEntity.ok("FreeOff"); // 좋아요가 있으면 끈다.
 			}else{
 				// 좋아요가 없으면 On(레이블 생성)
-				Pet_board_like petBoardLike = Pet_board_like.builder()
+				PetBoardLike petBoardLike = PetBoardLike.builder()
 											.petMember(petMember)
 											.petFreeBoard(petFreeBoard)
 											.petHoneyBoard(null)
@@ -64,7 +64,7 @@ public class Pet_board_like_Service {
 				//return ResponseEntity.ok("FreeOn"); // 좋아요가 없으면 +1
 			}
 		}else if(boardName.equals("honey")) {
-			Pet_honey_board petHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(boardId);
+			PetHoneyBoard petHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(boardId);
 			if(petBoardLikeRepository.findByPetMemberAndPetHoneyBoard(petMember, petHoneyBoard) != null) {
 				// 좋아요가 있으면 Off(레이블 삭제)
 				petBoardLikeRepository.deleteByPetMemberAndPetHoneyBoard(petMember, petHoneyBoard);
@@ -77,7 +77,7 @@ public class Pet_board_like_Service {
 				//return ResponseEntity.ok("HoneyOff");
 			}else {
 				// 좋아요가 없으면 On(레이블 생성성)
-				Pet_board_like petBoardLike = Pet_board_like.builder()
+				PetBoardLike petBoardLike = PetBoardLike.builder()
 											.petMember(petMember)
 											.petFreeBoard(null)
 											.petHoneyBoard(petHoneyBoard)
@@ -100,7 +100,7 @@ public class Pet_board_like_Service {
 	@Transactional
 	public Object likeAll(String userId, String boardName){
 
-		Pet_member petMember = petMemberRepository.findByUserId(userId);
+		PetMember petMember = petMemberRepository.findByUserId(userId);
 
 		if((boardName.equals("free"))) {
 			return petBoardLikeRepository.findByPetMemberAndPetFreeBoardIsNotNull(petMember);

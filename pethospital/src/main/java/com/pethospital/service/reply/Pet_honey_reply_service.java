@@ -8,11 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pethospital.domain.Pet_member;
-import com.pethospital.domain.board.Pet_honey_board;
+import com.pethospital.domain.PetMember;
+import com.pethospital.domain.board.PetHoneyBoard;
 import com.pethospital.domain.reply.Pet_honey_reply;
-import com.pethospital.repository.Pet_member_Repository;
-import com.pethospital.repository.board.Pet_honey_board_Repository;
+import com.pethospital.repository.PetMemberRepository;
+import com.pethospital.repository.board.PetHoneyBoardRepository;
 import com.pethospital.repository.reply.Pet_honey_reply_Repository;
 
 @Service
@@ -22,10 +22,10 @@ public class Pet_honey_reply_service {
 	Pet_honey_reply_Repository petHoneyReplyRepository;
 	
 	@Autowired
-	Pet_honey_board_Repository petHoneyBoardRepository;
+	PetHoneyBoardRepository petHoneyBoardRepository;
 	
 	@Autowired
-	Pet_member_Repository petMemberRepository;
+	PetMemberRepository petMemberRepository;
 	
 	// 전체 댓글 조회
 	public List<Pet_honey_reply> allReadHoneyReply(){
@@ -39,9 +39,9 @@ public class Pet_honey_reply_service {
 											  String userId){ // 유저 아이디
 			
 		// userId에 해당하는 객체 불러오기
-		Pet_member petMember = petMemberRepository.findByUserId(userId);
+		PetMember petMember = petMemberRepository.findByUserId(userId);
 		// freeBoardId 해당하는 객체 불러오기
-		Pet_honey_board petHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(honeyBoardId);
+		PetHoneyBoard petHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(honeyBoardId);
 			
 		// 1-1. 게시글이 존재 할 때..
 		if(petHoneyBoard != null) {

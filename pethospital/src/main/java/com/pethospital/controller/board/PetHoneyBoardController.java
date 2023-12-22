@@ -21,72 +21,69 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pethospital.domain.board.Pet_free_board;
-import com.pethospital.dto.FreeBoardDTO;
-import com.pethospital.service.board.Pet_free_board_Service;
+import com.pethospital.domain.board.PetHoneyBoard;
+import com.pethospital.service.board.PetHoneyBoardService;
 
 import jakarta.transaction.Transactional;
 
 @RestController
-public class Pet_free_board_controller{
-
+public class PetHoneyBoardController {
+	
 	@Autowired
-	Pet_free_board_Service petFreeBoardService;
+	PetHoneyBoardService petHoneyBoardService;
 	
-	// 자유 게시판 - 회원
-	// 게시글 등록 
-	@PostMapping("/free")
-	public ResponseEntity<String> createFree(@ModelAttribute Pet_free_board petFreeBoard,
-											 @RequestParam(name = "imageFile", required = false) MultipartFile imageFile,
-											 Authentication authentication){
-		
+	// 꿀팁 게시판
+	// 게시글 등록하기
+	@PostMapping("/honey")
+	public ResponseEntity<String> createBoard(@ModelAttribute PetHoneyBoard petHoneyBoard,
+											  @RequestParam(name = "imageFile", required = false) MultipartFile imageFile,
+											  Authentication authentication){	
 		if (authentication == null) {
-	        return ResponseEntity.ok("회원이 아닙니다");
-	    } else {
-	    	// 멤버권한을 가진자만 게시글을 작성할 수 있다.
+			return ResponseEntity.ok("회원이 아닙니다.");
+		}else {
+			// 권한이 있어야 게시글 작성가능
 			String userId = authentication.getName();
-			petFreeBoardService.createFreeService(petFreeBoard, imageFile,userId);
+			petHoneyBoardService.createHoneyService(petHoneyBoard, imageFile, userId);
 			return ResponseEntity.ok("글이 등록 되었습니다.");
-	    }
+		}
 	}
 	
-	// 전체 게시글 조회
-	@GetMapping("/free")
-	public ResponseEntity<List<FreeBoardDTO>> allReadFree() {
-		List<FreeBoardDTO> boardsWithImageUrl = petFreeBoardService.allSelectFreeBoard();
-		return ResponseEntity.ok(boardsWithImageUrl); 
+	// 전체 게시글 가져오기
+	@GetMapping("/honey")
+	public List<PetHoneyBoard> allReadBoard(){
+		return petHoneyBoardService.allSelectHoneyBoard();
 	}
-		
-	// 특정 게시글 조회(번호검색)
-	@GetMapping("/free/{boardId}")
-	public Pet_free_board readFree(@PathVariable int boardId){
-		return petFreeBoardService.selectFreeBoard(boardId);
+	
+	// 특정 게시글 가져오기(게시글 번호)
+	@GetMapping("/honey/{boardId}")
+	public PetHoneyBoard readBoard(@PathVariable int boardId){
+		return petHoneyBoardService.selectHoneyBoard(boardId);
 	}
-		
-	// 게시글 수정
-	@PutMapping("free/{freeBoardId}")
-	public Object updateFree(@PathVariable int freeBoardId, 
-							 @ModelAttribute Pet_free_board post,
-							 @RequestParam(name = "imageFile", required = false) MultipartFile imageFile,
-							 Authentication authentication) {
-		
+	
+	// 게시글 수정하기
+	@PutMapping("/honey/{honeyBoardId}")
+	public Object updateBoard(@PathVariable int honeyBoardId, 
+							  @ModelAttribute PetHoneyBoard post,
+							  @RequestParam(name = "imageFile", required = false) MultipartFile imageFile,
+							  Authentication authentication) {
 		String userId = authentication.getName();
-		return petFreeBoardService.updateFreeBoard(freeBoardId, post, imageFile, userId);
+		return petHoneyBoardService.updateHoneyBoard(honeyBoardId, post, imageFile, userId);
 	}
 	
-	// 게시글 삭제
+	// 게시글 삭제하기
 	@Transactional
-	@DeleteMapping("free/{freeBoardId}")
-	public ResponseEntity<String> deleteFree(@PathVariable int freeBoardId, Authentication authentication) {
-		String userId = authentication.getName();	
-		return petFreeBoardService.deleteFreeBoard(freeBoardId, userId);
+	@DeleteMapping("/honey/{honeyBoardId}")
+	public ResponseEntity<String> deleteBoard(@PathVariable int honeyBoardId, Authentication authentication) {
+		String userId = authentication.getName();
+		
+		return petHoneyBoardService.deleteHoneyBoard(honeyBoardId, userId);
 	}
 
 	// 이미지 파일이 저장된 디렉토리 경로를 설정.
-	private final String imageDirectory = "C:/MiniProject/pethospital/Image/Free";
+	private final String imageDirectory = "C:/MiniProject/pethospital/Image/Honey";
 
 	// 이미지 조회
-	@GetMapping("/free/images/{imageName:.+}")
+	@GetMapping("/honey/images/{imageName:.+}")
 	public ResponseEntity<Resource> getImage(@PathVariable String imageName) throws MalformedURLException {
 
         // 요청된 이미지 파일 이름을 사용하여 이미지 파일의 경로를 가져오기.
@@ -105,5 +102,5 @@ public class Pet_free_board_controller{
                 .contentType(MediaType.IMAGE_JPEG)
                 .body(imageResource);
     }
-			
+		
 }

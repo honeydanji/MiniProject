@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pethospital.domain.Pet_member;
+import com.pethospital.domain.PetMember;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j // : 디버그, 오류, 정보 등에 관한 메시지를 설정할 수 있다. 특정 오류에 대한 해답을 오류 메시지로 기록할 수 있다.(잘 쓰면 정말 유용)
 @RequiredArgsConstructor // : 클래스 내에 모든 필드에 대한 생성자를 자동으로 생성해준다.
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 	
 	private final AuthenticationManager authenticationManager;
 
@@ -36,7 +36,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		
 		try {
 			ObjectMapper om = new ObjectMapper(); // JSON 데이터를 역질렬화 즉 데이터구조를 바꿔준다.
-			Pet_member petMember = om.readValue(req.getInputStream(), Pet_member.class);
+			PetMember petMember = om.readValue(req.getInputStream(), PetMember.class);
 			// req.getInputStream() : JSON형태를 읽는다.
 			// Pet_member.class : 읽은 데이터를 Pet_member개체로 역직렬화한다.(역직렬화 : JSON데이터의 구조를 변환시킨다. 왜? 그래야 자바에서 알아먹는다.)
 			

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pet_member_dto {
+public class PetMemberDto {
 	
 	private String name;
 	private String userId;

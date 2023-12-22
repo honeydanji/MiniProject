@@ -10,33 +10,33 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pethospital.domain.Pet_member;
-import com.pethospital.domain.board.Pet_honey_board;
-import com.pethospital.repository.Pet_member_Repository;
-import com.pethospital.repository.board.Pet_honey_board_Repository;
+import com.pethospital.domain.PetMember;
+import com.pethospital.domain.board.PetHoneyBoard;
+import com.pethospital.repository.PetMemberRepository;
+import com.pethospital.repository.board.PetHoneyBoardRepository;
 
 import jakarta.transaction.Transactional;
 
 @Service
-public class Pet_honey_board_Service {
+public class PetHoneyBoardService {
 
 	// 이미지 파일의 기본 URL
 	private final String imageBaseURL = "http://10.125.121.183:8080/honey/images/";
 	//private final String imageBaseURL = "http:/localhost:8080/honey/images/";   // 로컬
 
 	@Autowired
-	Pet_honey_board_Repository petHoneyBoardRepository;
+	PetHoneyBoardRepository petHoneyBoardRepository;
 	
 	
 	@Autowired
-	Pet_member_Repository petMemberRepository;
+	PetMemberRepository petMemberRepository;
 	
 	// 게시글 등록
-	public void createHoneyService(Pet_honey_board petHoneyBoard, 
-								   MultipartFile imageFile, 
-								   String userId) {
+	public void createHoneyService(PetHoneyBoard petHoneyBoard,
+                                   MultipartFile imageFile,
+                                   String userId) {
 		// 게시글을 작성할 때 멤버정보(닉네임, 아이디)를 게시판 테이블에 저장한다.
-		Pet_member petMember = petMemberRepository.findByUserId(userId);
+		PetMember petMember = petMemberRepository.findByUserId(userId);
 		
 				
 		// 로그인 유저 정보 게시글 ID, NickName 저장
@@ -81,17 +81,17 @@ public class Pet_honey_board_Service {
         return null; // 파일이나 이미지가 없을 경우
     }
 	// 전체 게시글 조회
-	public List<Pet_honey_board> allSelectHoneyBoard() {
+	public List<PetHoneyBoard> allSelectHoneyBoard() {
 		return petHoneyBoardRepository.findAll();
 	}
 		
 	// 특정 게시글 조회(제목검색)
-	public Pet_honey_board selectHoneyBoard(int boardId) {
+	public PetHoneyBoard selectHoneyBoard(int boardId) {
 		
 		// 1. 게시글이 있는 지 판단한다.
 		if(petHoneyBoardRepository.findByHoneyBoardId(boardId) != null) {			
 			// 1-1 번호로 게시글 불러오고
-			Pet_honey_board likeHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(boardId);
+			PetHoneyBoard likeHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(boardId);
 			// 1-2 게시글 조회수 수정(증가)
 			likeHoneyBoard.setViews(likeHoneyBoard.getViews() + 1); 		
 			// 1-3 조회수 증가후 다시 저장
@@ -105,16 +105,16 @@ public class Pet_honey_board_Service {
 	}
 		
 	// 게시글 수정
-	public Object updateHoneyBoard(int honeyBoardId, Pet_honey_board post, MultipartFile imageFile, String userId) {
+	public Object updateHoneyBoard(int honeyBoardId, PetHoneyBoard post, MultipartFile imageFile, String userId) {
 		//Pet_member petMember = petMemberRepository.findByUserId(userId);
 		
 		// 해당 번호 게시글 가져오기
-		Pet_honey_board petHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(honeyBoardId);
+		PetHoneyBoard petHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(honeyBoardId);
 		
 		if(!petHoneyBoard.getUserId().equals(userId)) {
 			return ResponseEntity.ok("본인 게시글이 아닙니다.");
 		}else {
-			Pet_honey_board modifyHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(honeyBoardId); // 번호로 게시글 찾고
+			PetHoneyBoard modifyHoneyBoard = petHoneyBoardRepository.findByHoneyBoardId(honeyBoardId); // 번호로 게시글 찾고
 			
 			if(modifyHoneyBoard != null) {
 				modifyHoneyBoard.setTitle(post.getTitle());
@@ -139,7 +139,7 @@ public class Pet_honey_board_Service {
 	// 게시글 삭제
 	@Transactional
 	public ResponseEntity<String> deleteHoneyBoard(int honeyBoardId, String userId) {
-		Pet_member petMember = petMemberRepository.findByUserId(userId);
+		PetMember petMember = petMemberRepository.findByUserId(userId);
 		
 		if(petMember == null) {
 			return ResponseEntity.ok("회원이 아닙니다.");

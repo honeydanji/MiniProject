@@ -23,8 +23,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-@SqlResultSetMapping(name = "CombinedBoardMapping", entities = @EntityResult(entityClass = Pet_view_board.class))
-public class Pet_view_board {
+@SqlResultSetMapping(name = "CombinedBoardMapping", entities = @EntityResult(entityClass = PetViewBoard.class))
+public class PetViewBoard {
 
 	private String source;
 	

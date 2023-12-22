@@ -4,23 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.pethospital.domain.Pet_member;
-import com.pethospital.dto.Pet_member_dto;
-import com.pethospital.repository.Pet_member_Repository;
+import com.pethospital.domain.PetMember;
+import com.pethospital.dto.PetMemberDto;
+import com.pethospital.repository.PetMemberRepository;
 
 @Service
-public class Pet_member_Service {
+public class PetMemberService {
 
     @Autowired
-    private Pet_member_Repository pet_member_repository;
+    private PetMemberRepository pet_member_repository;
     
     @Autowired
 	BCryptPasswordEncoder secret;
     
         
     // 회원 정보 저장
-    public void registerPetMember(Pet_member_dto petMemberDto) {
-    	Pet_member petMember = new Pet_member();
+    public void registerPetMember(PetMemberDto petMemberDto) {
+    	PetMember petMember = new PetMember();
     	
     	// 필수사항
     	petMember.setName(petMemberDto.getName());
