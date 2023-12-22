@@ -13,12 +13,16 @@ import com.pethospital.service.PetMemberService;
 @RestController
 public class PetMemberController {
 
+    private final PetMemberService petMemberService;
+
     @Autowired
-    private PetMemberService pet_member_service;
+    public PetMemberController(PetMemberService petMemberService) {
+        this.petMemberService = petMemberService;
+    }
 
     @PostMapping("/register")
     public ResponseEntity<String> registerMember(@RequestBody PetMemberDto petMemberDto) {
-        pet_member_service.registerPetMember(petMemberDto);
+        petMemberService.registerPetMember(petMemberDto);
         return ResponseEntity.status(HttpStatus.CREATED).body("회원가입을 축하드립니다.");
     }
     
