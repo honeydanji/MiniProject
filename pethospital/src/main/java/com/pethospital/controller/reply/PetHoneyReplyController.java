@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pethospital.domain.reply.Pet_honey_reply;
-import com.pethospital.service.reply.Pet_honey_reply_service;
+import com.pethospital.domain.reply.PetHoneyReply;
+import com.pethospital.service.reply.PetHoneyReplyService;
 
 @RestController 
 public class PetHoneyReplyController {
 
 	@Autowired
-	Pet_honey_reply_service petHoneyReplyService;
+	PetHoneyReplyService petHoneyReplyService;
 	
 	
 	// 전체 댓글 조회 - 비회원, 회원
 	@GetMapping("/honeyReply")
-	public List<Pet_honey_reply> allHoneyReply() {
+	public List<PetHoneyReply> allHoneyReply() {
 		return petHoneyReplyService.allReadHoneyReply();
 	}
 	
@@ -34,7 +34,7 @@ public class PetHoneyReplyController {
 	@Transactional
 	@PostMapping("/honeyReply/{honeyBoardId}")
 	public ResponseEntity<String> createHoneyReply(@PathVariable int honeyBoardId, 
-												   @RequestBody Pet_honey_reply reply,
+												   @RequestBody PetHoneyReply reply,
 												   Authentication authentication) {
 		// 1. 몇번 게시글인가?
 		String userId = authentication.getName();	
@@ -46,7 +46,7 @@ public class PetHoneyReplyController {
 	@Transactional
 	@PutMapping("/honeyReply/{commentId}")
 	public ResponseEntity<String> updateHoneyReply(@PathVariable int commentId,
-			  									   @RequestBody Pet_honey_reply reply,
+			  									   @RequestBody PetHoneyReply reply,
 			  									   Authentication authentication) {
 		// 1. 회원이 맞는가? Authentication
 		// 2. 몇번 댓글인가? commentId
@@ -60,7 +60,7 @@ public class PetHoneyReplyController {
 	@Transactional
 	@DeleteMapping("/honeyReply/{commentId}")
 	public ResponseEntity<String> deleteHoneyReply(@PathVariable int commentId,
-			  									   @RequestBody Pet_honey_reply reply,
+			  									   @RequestBody PetHoneyReply reply,
 			  									   Authentication authentication) {
 		// 1. 회원이 맞는가? authentication
 		// 2. 몇번 댓글인가? commentId

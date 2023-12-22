@@ -24,8 +24,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @Builder
-@SqlResultSetMapping(name = "CombinedReplyMapping", entities = @EntityResult(entityClass = Pet_view_reply.class))
-public class Pet_view_reply {
+@SqlResultSetMapping(name = "CombinedReplyMapping", entities = @EntityResult(entityClass = PetViewReply.class))
+public class PetViewReply {
 
 	private String source;
 	

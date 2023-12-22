@@ -10,16 +10,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pethospital.domain.PetMember;
 import com.pethospital.domain.board.PetFreeBoard;
-import com.pethospital.domain.reply.Pet_free_reply;
+import com.pethospital.domain.reply.PetFreeReply;
 import com.pethospital.repository.PetMemberRepository;
 import com.pethospital.repository.board.PetFreeBoardRepository;
-import com.pethospital.repository.reply.Pet_free_reply_Repository;
+import com.pethospital.repository.reply.PetFreeReplyRepository;
 
 @Service
-public class Pet_free_reply_service {
+public class PetFreeReplyService {
 
 	@Autowired
-	Pet_free_reply_Repository petFreeReplyRepository;
+	PetFreeReplyRepository petFreeReplyRepository;
 	
 	@Autowired
 	PetFreeBoardRepository petFreeBoardRepository;
@@ -28,14 +28,14 @@ public class Pet_free_reply_service {
 	PetMemberRepository petMemberRepository;
 	
 	// 전체 댓글 조회
-	public List<Pet_free_reply> allReadFreeReply() {
+	public List<PetFreeReply> allReadFreeReply() {
 		return petFreeReplyRepository.findAll();
 	}
 	
 	// 댓글 작성
 	@Transactional
 	public ResponseEntity<String> createReply(int freeBoardId, // 게시판 번호
-											  Pet_free_reply reply, // 댓글 내용
+											  PetFreeReply reply, // 댓글 내용
 											  String userId){ // 유저 아이디
 		
 		// userId에 해당하는 객체 불러오기
@@ -46,7 +46,7 @@ public class Pet_free_reply_service {
 		// 1-1. 게시글이 존재 할 때..
 		if(petFreeBoardRepository.findByFreeBoardId(freeBoardId) != null) {
 			// 객체 생성
-			Pet_free_reply petFreeReply = new Pet_free_reply();
+			PetFreeReply petFreeReply = new PetFreeReply();
 			
 			petFreeReply.setContents(reply.getContents()); // 댓글 내용 저장
 			petFreeReply.setNickname(petMember.getNickname()); // userId에 해당하는 닉네임 저장.
@@ -64,11 +64,11 @@ public class Pet_free_reply_service {
 	// 댓글 수정
 	@Transactional
 	public ResponseEntity<String> updateReply(int commentId,
-											  Pet_free_reply reply,
+											  PetFreeReply reply,
 											  String userId){
 		
 		// 1. 댓글 작성 아이디와 수정 시도 아이디와 일치하는 지 확인해야함.
-		Pet_free_reply petFreeReply = petFreeReplyRepository.findByCommentId(commentId); 
+		PetFreeReply petFreeReply = petFreeReplyRepository.findByCommentId(commentId);
 		
 		if(!userId.equals(petFreeReply.getUserId())) {
 			return ResponseEntity.ok("본인 댓글 수정이 가능합니다.");
@@ -86,7 +86,7 @@ public class Pet_free_reply_service {
 											  String userId){
 		
 		// 댓글 작성 아이디와 삭제 시도 아이디와 일치하는 지 확인
-		Pet_free_reply petFreeReply = petFreeReplyRepository.findByCommentId(commentId); 
+		PetFreeReply petFreeReply = petFreeReplyRepository.findByCommentId(commentId);
 		
 		if(!userId.equals(petFreeReply.getUserId())) {
 			return ResponseEntity.ok("본인 댓글만 삭제 가능합니다.");

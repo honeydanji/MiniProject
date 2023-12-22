@@ -10,16 +10,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pethospital.domain.PetMember;
 import com.pethospital.domain.board.PetHoneyBoard;
-import com.pethospital.domain.reply.Pet_honey_reply;
+import com.pethospital.domain.reply.PetHoneyReply;
 import com.pethospital.repository.PetMemberRepository;
 import com.pethospital.repository.board.PetHoneyBoardRepository;
-import com.pethospital.repository.reply.Pet_honey_reply_Repository;
+import com.pethospital.repository.reply.PetHoneyReplyRepository;
 
 @Service
-public class Pet_honey_reply_service {
+public class PetHoneyReplyService {
 
 	@Autowired
-	Pet_honey_reply_Repository petHoneyReplyRepository;
+	PetHoneyReplyRepository petHoneyReplyRepository;
 	
 	@Autowired
 	PetHoneyBoardRepository petHoneyBoardRepository;
@@ -28,14 +28,14 @@ public class Pet_honey_reply_service {
 	PetMemberRepository petMemberRepository;
 	
 	// 전체 댓글 조회
-	public List<Pet_honey_reply> allReadHoneyReply(){
+	public List<PetHoneyReply> allReadHoneyReply(){
 		return petHoneyReplyRepository.findAll();
 	}
 	
 	// 댓글 작성
 	@Transactional
 	public ResponseEntity<String> createReply(int honeyBoardId, // 게시판 번호
-											  Pet_honey_reply reply, // 댓글 내용
+											  PetHoneyReply reply, // 댓글 내용
 											  String userId){ // 유저 아이디
 			
 		// userId에 해당하는 객체 불러오기
@@ -46,7 +46,7 @@ public class Pet_honey_reply_service {
 		// 1-1. 게시글이 존재 할 때..
 		if(petHoneyBoard != null) {
 			// 객체 생성
-			Pet_honey_reply petHoneyReply = new Pet_honey_reply();
+			PetHoneyReply petHoneyReply = new PetHoneyReply();
 			
 			petHoneyReply.setContents(reply.getContents()); // 댓글 내용 저장
 			petHoneyReply.setNickname(petMember.getNickname()); // userId에 해당하는 닉네임 저장.
@@ -64,11 +64,11 @@ public class Pet_honey_reply_service {
 	// 댓글 수정
 	@Transactional
 	public ResponseEntity<String> updateReply(int commentId,
-											  Pet_honey_reply reply,
+											  PetHoneyReply reply,
 											  String userId){
 		
 		// 1. 댓글 작성 아이디와 수정 시도 아이디와 일치하는 지 확인해야함.
-		Pet_honey_reply petHoneyReply = petHoneyReplyRepository.findByCommentId(commentId); 
+		PetHoneyReply petHoneyReply = petHoneyReplyRepository.findByCommentId(commentId);
 		
 		if(!userId.equals(petHoneyReply.getUserId())) {
 			return ResponseEntity.ok("본인 댓글 수정이 가능합니다.");
@@ -83,11 +83,11 @@ public class Pet_honey_reply_service {
 	// 댓글 삭제
 	@Transactional
 	public ResponseEntity<String> deleteReply(int commentId,
-											  Pet_honey_reply reply,
+											  PetHoneyReply reply,
 											  String userId){
 			
 		// 댓글 작성 아이디와 삭제 시도 아이디와 일치하는 지 확인
-		Pet_honey_reply petHoneyReply = petHoneyReplyRepository.findByCommentId(commentId); 
+		PetHoneyReply petHoneyReply = petHoneyReplyRepository.findByCommentId(commentId);
 			
 		if(!userId.equals(petHoneyReply.getUserId())) {
 			return ResponseEntity.ok("본인 댓글만 삭제 가능합니다.");

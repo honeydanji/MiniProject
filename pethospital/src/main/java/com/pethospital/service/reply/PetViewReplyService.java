@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pethospital.domain.reply.Pet_view_reply;
-import com.pethospital.repository.reply.Pet_view_reply_Repository;
+import com.pethospital.domain.reply.PetViewReply;
+import com.pethospital.repository.reply.PetViewReplyRepository;
 
 @Service
-public class Pet_view_reply_service {
+public class PetViewReplyService {
 	
 	@Autowired
-	Pet_view_reply_Repository petViewReplyRepository;
+	PetViewReplyRepository petViewReplyRepository;
 	
-	public List<Pet_view_reply> fiveReply(){
+	public List<PetViewReply> fiveReply(){
 		return petViewReplyRepository.findRecentReply();
 	}
 

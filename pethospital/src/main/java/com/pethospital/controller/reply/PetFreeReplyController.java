@@ -14,19 +14,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pethospital.domain.reply.Pet_free_reply;
-import com.pethospital.service.reply.Pet_free_reply_service;
+import com.pethospital.domain.reply.PetFreeReply;
+import com.pethospital.service.reply.PetFreeReplyService;
 
 @RestController
 public class PetFreeReplyController {
 
 	
 	@Autowired
-	Pet_free_reply_service petFreeReplyService;
+	PetFreeReplyService petFreeReplyService;
 	
 	// 전체 댓글 조회 - 회원권한
 	@GetMapping("/freeReply")
-	public List<Pet_free_reply> allFreeReply() {
+	public List<PetFreeReply> allFreeReply() {
 		return petFreeReplyService.allReadFreeReply();
 	}
 	
@@ -34,7 +34,7 @@ public class PetFreeReplyController {
 	@Transactional
 	@PostMapping("/freeReply/{freeBoardId}")
 	public ResponseEntity<String> createFreeReply(@PathVariable int freeBoardId, 
-												  @RequestBody Pet_free_reply reply,
+												  @RequestBody PetFreeReply reply,
 												  Authentication authentication) {
 		// 1. 몇번 게시글인가?
 		String userId = authentication.getName();	
@@ -45,7 +45,7 @@ public class PetFreeReplyController {
 	@Transactional
 	@PutMapping("/freeReply/{commentId}")
 	public ResponseEntity<String> updateFreeReply(@PathVariable int commentId,
-												  @RequestBody Pet_free_reply reply,
+												  @RequestBody PetFreeReply reply,
 												  Authentication authentication) {
 		// 1. 회원이 맞는가? Authentication
 		// 2. 몇번 댓글인가? commentId

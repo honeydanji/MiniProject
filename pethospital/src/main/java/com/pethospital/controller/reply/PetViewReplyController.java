@@ -6,19 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pethospital.domain.reply.Pet_view_reply;
-import com.pethospital.service.reply.Pet_view_reply_service;
+import com.pethospital.domain.reply.PetViewReply;
+import com.pethospital.service.reply.PetViewReplyService;
 
 @RestController
 public class PetViewReplyController {
 
 	
 	@Autowired
-	Pet_view_reply_service petViewReplyService;
+	PetViewReplyService petViewReplyService;
 	
 	// 최신 댓글 5개
 	@GetMapping("/recentreply")
-	public List<Pet_view_reply> recentReply(){
+	public List<PetViewReply> recentReply(){
 		return petViewReplyService.fiveReply();
 	}
 }

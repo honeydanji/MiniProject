@@ -2,7 +2,7 @@ package com.pethospital.domain.reply;
 
 import java.util.Date;
 
-import com.pethospital.domain.board.PetHoneyBoard;
+import com.pethospital.domain.board.PetFreeBoard;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,18 +12,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+@Builder
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Pet_honey_reply {
+public class PetFreeReply {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,8 +33,8 @@ public class Pet_honey_reply {
     private int commentId;
     
     @ManyToOne
-    @JoinColumn(name="honey_board_id", nullable = false)
-    private PetHoneyBoard honeyBoardId;
+    @JoinColumn(name="free_board_id", nullable = false)
+    private PetFreeBoard freeBoardId;
 
     @Column(name="user_id", unique = true)
     private String userId;
