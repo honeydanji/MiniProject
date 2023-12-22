@@ -1,6 +1,7 @@
 package com.pethospital.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,13 +15,11 @@ public class PetMemberController {
 
     @Autowired
     private PetMemberService pet_member_service;
-    
-    // 회원가입
+
     @PostMapping("/register")
     public ResponseEntity<String> registerMember(@RequestBody PetMemberDto petMemberDto) {
-        pet_member_service.registerPetMember(petMemberDto); // 프론트에서 보낸 member 정보를 서비스로 보낸다.
-//        return ResponseEntity.status(HttpStatus.OK).body("회원가입을 축하드립니다.");
-        return ResponseEntity.ok("회원가입을 축하드립니다.");
+        pet_member_service.registerPetMember(petMemberDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body("회원가입을 축하드립니다.");
     }
     
 //    // 로그인
