@@ -14,14 +14,12 @@ import com.pethospital.service.PetHospitalService;
 public class PetController {
     
     @Autowired
-    private PetHospitalService pet_hospital_sevice;
+    private PetHospitalService petHospitalService;
 
-    // '광역도시' 목록반환
-    //@CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/province") 
     public Map<String, Object> getProvinces() {
         Map<String, Object> response = new HashMap<>();
-        response.put("province", pet_hospital_sevice.getDistinctProvinces()); // 광역도시 반환
+        response.put("province", petHospitalService.getDistinctProvinces()); // 광역도시 반환
         return response;
     }
 
@@ -29,7 +27,7 @@ public class PetController {
     @GetMapping("/province/{province}")
     public Map<String, Object> getProvinces(@PathVariable String province) {
         Map<String, Object> response = new HashMap<>();
-        response.put("sigungu", pet_hospital_sevice.getDistinctCitiesByProvince(province)); // 시/구/군 반환
+        response.put("sigungu", petHospitalService.getDistinctCitiesByProvince(province)); // 시/구/군 반환
         return response;
     }
 
@@ -37,7 +35,7 @@ public class PetController {
     @GetMapping("/province/{province}/{sigungu}")
     public Map<String, Object> getProvinces(@PathVariable String province, @PathVariable String sigungu) {
         Map<String, Object> response = new HashMap<>();
-        response.put("dong", pet_hospital_sevice.getDistinctDetailCitiesByProvinceAndCity(province, sigungu)); // 동/읍/면 반환
+        response.put("dong", petHospitalService.getDistinctDetailCitiesByProvinceAndCity(province, sigungu)); // 동/읍/면 반환
         return response;
     }
       
@@ -45,7 +43,7 @@ public class PetController {
     @GetMapping("/searchhospital/{name}")
     public Map<String, Object> getHospitalOfName(@PathVariable String name) {
         Map<String, Object> response = new HashMap<>();
-        response.put("hospital_name", pet_hospital_sevice.getpethospitalByName(name)); // 검색을 통한 동물병원 
+        response.put("hospital_name", petHospitalService.getpethospitalByName(name)); // 검색을 통한 동물병원
         return response;
     }
     
@@ -54,7 +52,7 @@ public class PetController {
      @GetMapping("/hospital/{province}")
      public Map<String, Object> getHospitalOfProvinces(@PathVariable String province){
          Map<String, Object> response = new HashMap<>();
-         response.put("pethospital", pet_hospital_sevice.getpethospitalByProvince(province)); // 광역도시 병원목록 
+         response.put("pethospital", petHospitalService.getpethospitalByProvince(province)); // 광역도시 병원목록
          return response;
      }
      
@@ -63,7 +61,7 @@ public class PetController {
      public Map<String, Object> getHospitalOfCities(@PathVariable String province, 
     		 										@PathVariable String city) {
          Map<String, Object> response = new HashMap<>();
-         response.put("pethospital", pet_hospital_sevice.getpethospitalByProvinceAndCity(province, city)); // 도/시 + 시/구/군 병원목록
+         response.put("pethospital", petHospitalService.getpethospitalByProvinceAndCity(province, city)); // 도/시 + 시/구/군 병원목록
          return response;
      }
      
@@ -73,7 +71,7 @@ public class PetController {
     		 											  @PathVariable String city, 
     		 											  @PathVariable String detailcity){
          Map<String, Object> response = new HashMap<>();
-         response.put("pethospital", pet_hospital_sevice.getpethospitalByProvinceAndCityAndDetailCity(province, city, detailcity));// 도/시 + 시/구/군 + 동/읍/면 병원목록
+         response.put("pethospital", petHospitalService.getpethospitalByProvinceAndCityAndDetailCity(province, city, detailcity));// 도/시 + 시/구/군 + 동/읍/면 병원목록
          return response;
      }
 }
