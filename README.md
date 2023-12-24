@@ -4,7 +4,11 @@
 ```
 
 ## 변경사항
-- 직관적인 변수명으로 수정
-- 상황에 맞는 접근 제한자 적용
-- 매지넘버와 상수 구분하기
-- 의존성 주입 (필드 > 생성자)
+- Variable Name
+- Access Modifiers
+- Dependency Injection
+- Add Constants
+
+
+### Reference
+- https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29 
