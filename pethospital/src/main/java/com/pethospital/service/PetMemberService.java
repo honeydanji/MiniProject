@@ -38,18 +38,4 @@ public class PetMemberService {
 
 		petMemberRepository.save(petMember);
     }
-    
-    // jwt를 이용하기 때문에 service에서 구현할 필요 없다.
-    
-//    // 회원 정보 확인(로그인)
-//    public int loginPetMember(String userId, String password) {
-//    	// 아이디, 비밀번호 확인하는 코드 작성란
-//    	Pet_member petMemberUserId = pet_member_repository.findByUserId(userId);
-//    	//Pet_member petMemberPassword = pet_member_repository.findByPassword(password);
-//    	    		
-//    	if(petMemberUserId != null) { // 회원
-//    		if(petMemberUserId.getPassword().equals(password)) return 1; // 로그인 성공
-//    		else return -1; // 비밀번호 틀림
-//    	}else return 0;
-//    }
 }
