@@ -1,28 +1,35 @@
 package com.pethospital.controller;
 
-import com.pethospital.request.PetMemberRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pethospital.componets.ObjectConversion;
+import com.pethospital.vo.PetMemberRequest;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pethospital.service.PetMemberService;
 
 @RestController
+@RequiredArgsConstructor
+@RequestMapping("/user-service")
 public class PetMemberController {
 
     private final PetMemberService petMemberService;
-
-    @Autowired
-    public PetMemberController(PetMemberService petMemberService) {
-        this.petMemberService = petMemberService;
-    }
+    private final ObjectConversion conversion;
 
     @PostMapping("/register")
-    public ResponseEntity<String> registerMember(@RequestBody PetMemberRequest petMemberRequest) {
-//        petMemberService.registerPetMember(petMemberDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body("회원가입을 축하드립니다.");
+    public ResponseEntity<String> registerMember(@Valid @RequestBody PetMemberRequest petMemberRequest) {
+
+        try {
+            petMemberService.registerPetMember(conversion.memberRequestToDto(petMemberRequest));
+            return ResponseEntity.status(HttpStatus.CREATED).body("회원가입을 축하드립니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("잘못된 요청입니다.");
+        }
+
     }
 }
