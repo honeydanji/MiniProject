@@ -1,5 +1,6 @@
-package com.pethospital.service;
+package com.pethospital.service.conversion;
 
+import com.pethospital.domain.PetMember;
 import com.pethospital.dto.PetMemberDto;
 import com.pethospital.vo.PetMemberRequest;
 import org.modelmapper.ModelMapper;
@@ -8,9 +9,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ObjectConversion {
-    public PetMemberDto requestToDto(PetMemberRequest memberRequest) {
+
+    public PetMemberDto memberRequestToDto(PetMemberRequest memberRequest) {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return mapper.map(memberRequest, PetMemberDto.class);
     }
+
+    public PetMember memberDtoToEntity(PetMemberDto memberDto) {
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        return mapper.map(memberDto, PetMember.class);
+    }
+
 }
