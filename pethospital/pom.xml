@@ -6,13 +6,13 @@
         <!-- Spring Boot Starter Parent -->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.2</version>
+        <version>3.2.0</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.toyproject</groupId>
     <artifactId>toyproject</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>toyproject</name>
+    <name>pet-service</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <!-- Java version -->
@@ -32,20 +32,22 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Spring Boot DevTools: Provides fast application restarts and configuration changes without a full restart -->
+<!--        &lt;!&ndash; Spring Boot DevTools: Provides fast application restarts and configuration changes without a full restart &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-devtools</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--            <optional>true</optional>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.2.224</version>
             <scope>runtime</scope>
-            <optional>true</optional>
         </dependency>
 
-        <!-- MySQL Connector/J: MySQL JDBC driver -->
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
         
         <!-- Lombok: Simplifies Java code by providing annotations to generate boilerplate code -->
         <dependency>
@@ -59,36 +61,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <!-- Custom Dependencies -->  
-        <dependency>
-    		<groupId>com.auth0</groupId>
-    		<artifactId>java-jwt</artifactId>
-    		<version>4.4.0</version>
-		</dependency>
-        
-        <!-- JWT API: JSON Web Token library API -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
-            <version>0.11.2</version>
-        </dependency>
-
-        <!-- JWT Implementation: JSON Web Token library implementation -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
-            <version>0.11.2</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- JWT Jackson Support: JSON Web Token library Jackson support -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId>
-            <version>0.11.2</version>
-            <scope>runtime</scope>
         </dependency>
 
         <!-- Spring Boot Starter Security: Starter for using Spring Security -->
