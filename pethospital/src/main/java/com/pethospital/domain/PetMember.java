@@ -16,31 +16,22 @@ import jakarta.persistence.Id;
 @Data
 @Entity
 public class PetMember {
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
-    
     @Column(nullable = false, unique = true)
     private String nickname;
-    
-    @Column(name = "user_id", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String userId;
-
     @Column(nullable = false)
     private String password;
-    
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
     
-    @Column(name = "mobile_phone")
     private String mobilePhone;
-        
     private String address;
-    
     private String role;
     
     public Collection<? extends GrantedAuthority> getAuthorities(){
