@@ -1,13 +1,13 @@
-package com.pethospital.service.conversion;
+package com.pethospital.componets;
 
 import com.pethospital.domain.PetMember;
 import com.pethospital.dto.PetMemberDto;
 import com.pethospital.vo.PetMemberRequest;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class ObjectConversion {
 
     public PetMemberDto memberRequestToDto(PetMemberRequest memberRequest) {
