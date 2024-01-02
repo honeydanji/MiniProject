@@ -1,4 +1,4 @@
-package com.pethospital.request;
+package com.pethospital.vo;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -12,7 +12,7 @@ public class PetMemberRequest {
 
     @NotNull(message = "Nickname cannot be null")
     @Size(min = 2, message = "Nickname not be than less two characters")
-    private String nickName;
+    private String nickname;
 
     @NotNull(message = "userId cannot be null")
     private String userId;
