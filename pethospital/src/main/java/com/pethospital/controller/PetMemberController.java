@@ -24,12 +24,7 @@ public class PetMemberController {
     @PostMapping("/register")
     public ResponseEntity<String> registerMember(@Valid @RequestBody PetMemberRequest petMemberRequest) {
 
-        try {
-            petMemberService.registerPetMember(conversion.memberRequestToDto(petMemberRequest));
-            return ResponseEntity.status(HttpStatus.CREATED).body("회원가입을 축하드립니다.");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("잘못된 요청입니다.");
-        }
-
+        petMemberService.registerPetMember(conversion.memberRequestToDto(petMemberRequest));
+        return ResponseEntity.status(HttpStatus.CREATED).body("회원가입을 축하드립니다.");
     }
 }
