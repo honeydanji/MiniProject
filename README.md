@@ -8,6 +8,8 @@
 - Access Modifiers
 - Dependency Injection
 - Add Constants
+- Add Test
+- Add ExceptionHandler
 
 
 ### Reference
