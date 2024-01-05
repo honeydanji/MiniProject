@@ -41,7 +41,7 @@ public class WebSecurity {
         return authenticationFilter;
     }
 
-    public AuthenticationManager authenticationManager(AuthenticationManagerBuilder managerBuilder) throws Exception {
+    private AuthenticationManager authenticationManager(AuthenticationManagerBuilder managerBuilder) throws Exception {
         managerBuilder.userDetailsService(securityMember).passwordEncoder(bCryptPasswordEncoder);
         return managerBuilder.build();
     }
