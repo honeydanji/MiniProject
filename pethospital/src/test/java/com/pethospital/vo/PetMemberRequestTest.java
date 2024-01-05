@@ -44,6 +44,25 @@ public class PetMemberRequestTest {
                     assertThat(error.getMessage()).isEqualTo("Name Cannot be null");
                 });
     }
+
+    @Test
+    @DisplayName("닉네임이 null 인 경우")
+    void nicknameValidTest() {
+        PetMemberRequest petMemberRequest = new PetMemberRequest();
+        petMemberRequest.setName("Test");
+        // nickname is null
+        petMemberRequest.setUserId("Test1234");
+        petMemberRequest.setPassword("123456789");
+        petMemberRequest.setEmail("Test3680@naver.com");
+
+        Set<ConstraintViolation<PetMemberRequest>> violations = validator.validate(petMemberRequest);
+
+        assertThat(violations).isNotNull();
+        violations
+                .forEach(error -> {
+                    assertThat(error.getMessage()).isEqualTo("Nickname cannot be null");
+                });
+    }
 }
 
 // https://velog.io/@ayoung0073/springboot-annotation-valid 참고
