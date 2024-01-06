@@ -2,7 +2,7 @@ package com.pethospital.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pethospital.componets.ObjectConversion;
-import com.pethospital.service.PetMemberService;
+import com.pethospital.service.MemberService;
 import com.pethospital.vo.MemberRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class MemberControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private PetMemberService memberService;
+    private MemberService memberService;
     @MockBean
     private ObjectConversion objectConversion;
 

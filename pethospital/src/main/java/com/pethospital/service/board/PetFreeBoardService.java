@@ -11,10 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pethospital.domain.PetMember;
+import com.pethospital.domain.MemberEntity;
 import com.pethospital.domain.board.PetFreeBoard;
 import com.pethospital.dto.FreeBoardDto;
-import com.pethospital.repository.PetMemberRepository;
+import com.pethospital.repository.MemberRepository;
 import com.pethospital.repository.board.PetFreeBoardRepository;
 
 import jakarta.transaction.Transactional;
@@ -30,14 +30,14 @@ public class PetFreeBoardService {
 	PetFreeBoardRepository petFreeBoardRepository;
 
 	@Autowired
-	PetMemberRepository petMemberRepository;
+	MemberRepository petMemberRepository;
 	
 	// 게시글 등록
 	public void createFreeService(PetFreeBoard petFreeBoard,
                                   MultipartFile imageFile,
                                   String userId) {
 		// 게시글을 작성할 때 멤버정보(닉네임, 아이디)를 게시판 테이블에 저장한다.
-		PetMember petMember = petMemberRepository.findByUserId(userId);
+		MemberEntity petMember = petMemberRepository.findByUserId(userId);
 		
 		// 로그인 유저 정보 게시글 ID, NickName 저장
 		petFreeBoard.setUserId(petMember.getUserId());
@@ -165,7 +165,7 @@ public class PetFreeBoardService {
 	// 게시글 삭제
 	@Transactional
 	public ResponseEntity<String> deleteFreeBoard(int freeBoardId, String userId) {
-		PetMember petMember = petMemberRepository.findByUserId(userId);
+		MemberEntity petMember = petMemberRepository.findByUserId(userId);
 
 		if(petMember == null) {
 			return ResponseEntity.ok("회원이 아닙니다.");

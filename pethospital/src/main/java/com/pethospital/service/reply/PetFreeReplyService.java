@@ -8,10 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pethospital.domain.PetMember;
+import com.pethospital.domain.MemberEntity;
 import com.pethospital.domain.board.PetFreeBoard;
 import com.pethospital.domain.reply.PetFreeReply;
-import com.pethospital.repository.PetMemberRepository;
+import com.pethospital.repository.MemberRepository;
 import com.pethospital.repository.board.PetFreeBoardRepository;
 import com.pethospital.repository.reply.PetFreeReplyRepository;
 
@@ -25,7 +25,7 @@ public class PetFreeReplyService {
 	PetFreeBoardRepository petFreeBoardRepository;
 	
 	@Autowired
-	PetMemberRepository petMemberRepository;
+	MemberRepository petMemberRepository;
 	
 	// 전체 댓글 조회
 	public List<PetFreeReply> allReadFreeReply() {
@@ -39,7 +39,7 @@ public class PetFreeReplyService {
 											  String userId){ // 유저 아이디
 		
 		// userId에 해당하는 객체 불러오기
-		PetMember petMember = petMemberRepository.findByUserId(userId);
+		MemberEntity petMember = petMemberRepository.findByUserId(userId);
 		// freeBoardId 해당하는 객체 불러오기
 		PetFreeBoard petFreeBoard = petFreeBoardRepository.findByFreeBoardId(freeBoardId);
 		

@@ -1,6 +1,6 @@
 package com.pethospital.domain.board;
 
-import com.pethospital.domain.PetMember;
+import com.pethospital.domain.MemberEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,7 +32,7 @@ public class PetBoardLike {
 	
 	@ManyToOne // 다대원 방식
 	@JoinColumn(name = "id") // 폴인키로 묶을 때 사용!
-	private PetMember petMember;
+	private MemberEntity petMember;
 	
 	@ManyToOne
 	@JoinColumn(name = "free_board_id")

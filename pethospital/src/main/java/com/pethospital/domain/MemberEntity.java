@@ -15,7 +15,7 @@ import jakarta.persistence.Id;
 
 @Data
 @Entity
-public class PetMember {
+public class MemberEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

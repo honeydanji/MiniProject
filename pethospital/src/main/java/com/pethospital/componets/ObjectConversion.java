@@ -1,6 +1,6 @@
 package com.pethospital.componets;
 
-import com.pethospital.domain.PetMember;
+import com.pethospital.domain.MemberEntity;
 import com.pethospital.dto.PetMemberDto;
 import com.pethospital.vo.MemberRequest;
 import org.modelmapper.ModelMapper;
@@ -16,10 +16,10 @@ public class ObjectConversion {
         return mapper.map(memberRequest, PetMemberDto.class);
     }
 
-    public PetMember memberDtoToEntity(PetMemberDto memberDto) {
+    public MemberEntity memberDtoToEntity(PetMemberDto memberDto) {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        return mapper.map(memberDto, PetMember.class);
+        return mapper.map(memberDto, MemberEntity.class);
     }
 
 }

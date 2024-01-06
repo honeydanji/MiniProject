@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.pethospital.domain.PetMember;
+import com.pethospital.domain.MemberEntity;
 import com.pethospital.domain.board.PetBoardLike;
 import com.pethospital.domain.board.PetFreeBoard;
 import com.pethospital.domain.board.PetHoneyBoard;
-import com.pethospital.repository.PetMemberRepository;
+import com.pethospital.repository.MemberRepository;
 import com.pethospital.repository.board.PetBoardLikeRepository;
 import com.pethospital.repository.board.PetFreeBoardRepository;
 import com.pethospital.repository.board.PetHoneyBoardRepository;
@@ -20,7 +20,7 @@ public class PetBoardLikeService {
 	PetBoardLikeRepository petBoardLikeRepository; // 좋아요 테이블
 	
 	@Autowired
-	PetMemberRepository petMemberRepository; // 멤버
+	MemberRepository petMemberRepository; // 멤버
 
 	@Autowired
 	PetFreeBoardRepository petFreeBoardRepository; // 자유(자랑)게시판
@@ -32,7 +32,7 @@ public class PetBoardLikeService {
 	@Transactional
 	public Object boardLikeOnOff(String userId, String boardName, int boardId){
 		
-		PetMember petMember = petMemberRepository.findByUserId(userId);
+		MemberEntity petMember = petMemberRepository.findByUserId(userId);
 		
 		if (boardName.equals("free")) {
 			PetFreeBoard petFreeBoard = petFreeBoardRepository.findByFreeBoardId(boardId);
@@ -100,7 +100,7 @@ public class PetBoardLikeService {
 	@Transactional
 	public Object likeAll(String userId, String boardName){
 
-		PetMember petMember = petMemberRepository.findByUserId(userId);
+		MemberEntity petMember = petMemberRepository.findByUserId(userId);
 
 		if((boardName.equals("free"))) {
 			return petBoardLikeRepository.findByPetMemberAndPetFreeBoardIsNotNull(petMember);
