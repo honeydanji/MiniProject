@@ -3,7 +3,7 @@ package com.pethospital.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pethospital.componets.ObjectConversion;
 import com.pethospital.service.PetMemberService;
-import com.pethospital.vo.PetMemberRequest;
+import com.pethospital.vo.MemberRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class PetMemberControllerTest {
     @WithMockUser
     public void registerHttpTest() throws Exception {
 
-        PetMemberRequest petMemberRequest = new PetMemberRequest();
+        MemberRequest petMemberRequest = new MemberRequest();
         petMemberRequest.setName("Test");
         petMemberRequest.setNickname("Test1234");
         petMemberRequest.setUserId("Test1234");

@@ -29,14 +29,14 @@ public class PetMemberRequestTest {
     @Test
     @DisplayName("회원가입 요청 데이터에 이름이 null 인 경우")
     void nameValidTest() {
-        PetMemberRequest petMemberRequest = new PetMemberRequest();
+        MemberRequest petMemberRequest = new MemberRequest();
         // name is null
         petMemberRequest.setNickname("Test1234");
         petMemberRequest.setUserId("Test1234");
         petMemberRequest.setPassword("123456789");
         petMemberRequest.setEmail("Test3680@naver.com");
 
-        Set<ConstraintViolation<PetMemberRequest>> violations = validator.validate(petMemberRequest);
+        Set<ConstraintViolation<MemberRequest>> violations = validator.validate(petMemberRequest);
 
         assertThat(violations).isNotNull();
         violations
@@ -48,14 +48,14 @@ public class PetMemberRequestTest {
     @Test
     @DisplayName("닉네임이 null 인 경우")
     void nicknameValidTest() {
-        PetMemberRequest petMemberRequest = new PetMemberRequest();
+        MemberRequest petMemberRequest = new MemberRequest();
         petMemberRequest.setName("Test");
         // nickname is null
         petMemberRequest.setUserId("Test1234");
         petMemberRequest.setPassword("123456789");
         petMemberRequest.setEmail("Test3680@naver.com");
 
-        Set<ConstraintViolation<PetMemberRequest>> violations = validator.validate(petMemberRequest);
+        Set<ConstraintViolation<MemberRequest>> violations = validator.validate(petMemberRequest);
 
         assertThat(violations).isNotNull();
         violations

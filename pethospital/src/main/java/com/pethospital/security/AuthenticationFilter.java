@@ -1,7 +1,7 @@
 package com.pethospital.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pethospital.vo.RequestLogin;
+import com.pethospital.vo.LoginRequest;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                                                 HttpServletResponse response) throws AuthenticationException {
 
         try {
-            RequestLogin login = new ObjectMapper().readValue(request.getInputStream(), RequestLogin.class);
+            LoginRequest login = new ObjectMapper().readValue(request.getInputStream(), LoginRequest.class);
             log.info(login.getUserId());
             log.info(login.getPassword());
 

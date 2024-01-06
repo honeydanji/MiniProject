@@ -32,10 +32,10 @@ public class RequestLoginTest {
     @Test
     @DisplayName("로그인 요청 데이터 아이디가 비어있는 경우")
     void userIdValidTest() {
-        RequestLogin login = new RequestLogin();
+        LoginRequest login = new LoginRequest();
         login.setPassword("testtest");
 
-        Set<ConstraintViolation<RequestLogin>> violations = validator.validate(login);
+        Set<ConstraintViolation<LoginRequest>> violations = validator.validate(login);
 
         assertThat(violations).isNotEmpty();
         violations
@@ -47,10 +47,10 @@ public class RequestLoginTest {
     @Test
     @DisplayName("로그인 요청 데이터 비밀번호가 비어있는 경우")
     void passwordValidTest() {
-        RequestLogin login = new RequestLogin();
+        LoginRequest login = new LoginRequest();
         login.setUserId("test");
 
-        Set<ConstraintViolation<RequestLogin>> violations = validator.validate(login);
+        Set<ConstraintViolation<LoginRequest>> violations = validator.validate(login);
 
         assertThat(violations).isNotEmpty();
         violations

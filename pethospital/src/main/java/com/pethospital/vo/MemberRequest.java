@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import jakarta.validation.constraints.NotNull;
 @Data
-public class PetMemberRequest {
+public class MemberRequest {
     @NotNull(message = "Name Cannot be null")
     @Size(min = 2, message = "Name not be less than two characters")
     private String name;
