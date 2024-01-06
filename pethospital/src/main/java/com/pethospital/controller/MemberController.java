@@ -24,7 +24,11 @@ public class MemberController {
     @PostMapping("/register")
     public ResponseEntity<String> registerMember(@Valid @RequestBody MemberRequest petMemberRequest) {
 
-        petMemberService.registerPetMember(conversion.memberRequestToDto(petMemberRequest));
-        return ResponseEntity.status(HttpStatus.CREATED).body("회원가입을 축하드립니다.");
+        try {
+            petMemberService.registerPetMember(conversion.memberRequestToDto(petMemberRequest));
+            return ResponseEntity.status(HttpStatus.CREATED).body("회원가입을 축하드립니다.");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Validation error");
+        }
     }
 }

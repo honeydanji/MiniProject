@@ -1,6 +1,7 @@
 package com.pethospital.service;
 
 import com.pethospital.componets.ObjectConversion;
+import jakarta.validation.ConstraintViolationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,16 @@ public class PetMemberService {
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	private final ObjectConversion conversion;
 
-    public void registerPetMember(PetMemberDto petMemberDto) {
+    public String registerPetMember(PetMemberDto petMemberDto) throws Exception {
     	PetMember petMember = conversion.memberDtoToEntity(petMemberDto);
 		petMember.setPassword(bCryptPasswordEncoder.encode(petMemberDto.getPassword()));
     	petMember.setRole("ROLE_MEMBER");
 
-		petMemberRepository.save(petMember);
+		try {
+			petMemberRepository.save(petMember);
+			return null;
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
     }
 }
