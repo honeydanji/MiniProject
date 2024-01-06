@@ -10,7 +10,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PetMemberRequestTest {
+public class MemberRequestTest {
 
     private static ValidatorFactory factory;
     private static Validator validator;

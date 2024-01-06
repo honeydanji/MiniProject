@@ -16,7 +16,7 @@ import com.pethospital.service.PetMemberService;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user-service")
-public class PetMemberController {
+public class MemberController {
 
     private final PetMemberService petMemberService;
     private final ObjectConversion conversion;

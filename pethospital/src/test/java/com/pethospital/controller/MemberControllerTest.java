@@ -17,8 +17,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 
-@WebMvcTest(PetMemberController.class)
-public class PetMemberControllerTest {
+@WebMvcTest(MemberController.class)
+public class MemberControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
